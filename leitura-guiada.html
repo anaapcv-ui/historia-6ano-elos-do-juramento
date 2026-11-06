@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Elos do Juramento · História 6º</title>
+<style>
+  :root{
+    --fundo:#0f1117; --fundo2:#191d27; --aco:#2c3242; --aco2:#3f4659;
+    --laranja:#e8b23c; --azul:#6aa6e0; --verde:#4ed08a; --vermelho:#f0695f;
+    --amarelo:#f5cd5c; --texto:#e7ebf3; --cinza:#98a1b4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;
+    background:radial-gradient(1100px 520px at 50% -10%,#242b3f,#0f1117 62%),var(--fundo);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#1b2131,#121622 52%,#2b2114);padding:28px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.55);border-bottom:4px solid var(--laranja);position:relative;overflow:hidden}
+  header:before{content:"";position:absolute;left:50%;top:50%;width:210px;height:210px;margin:-105px 0 0 -105px;border:4px solid rgba(232,178,60,.10);border-radius:50%}
+  header:after{content:"";position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border:4px solid rgba(232,178,60,.08);border-radius:50%}
+  header .selo{font-size:.76rem;letter-spacing:2px;color:#e8cf9a;text-transform:uppercase;position:relative}
+  header h1{font-size:1.6rem;margin:7px 0 3px;position:relative}
+  header p{color:#ccd4e2;font-size:.93rem;position:relative}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .ordem{text-align:center;font-weight:bold;margin:10px 0;font-size:.95rem;color:#fff}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .mini:hover{background:#242a39}
+  /* ---- placar / corrente de elos ---- */
+  .placar{background:#0a0c12;border:2px solid #272d3c;border-radius:16px;padding:14px;margin-bottom:18px;text-align:center}
+  .placar h3{color:var(--amarelo);font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .placar p.sub{color:var(--cinza);font-size:.8rem;margin-bottom:10px}
+  .placar .pts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .placar .pt{width:58px;padding:6px 0;border-radius:14px;background:#141924;border:2px solid var(--aco2);cursor:pointer;font-family:'Courier New',monospace;font-weight:bold;color:#5a6378}
+  .placar .pt small{display:block;font-family:'Segoe UI',sans-serif;font-weight:normal;font-size:.62rem}
+  .placar .pt.aberto{color:var(--laranja);border-color:var(--laranja)}
+  .placar .pt.feito{color:#07241a;background:var(--verde);border-color:var(--verde);box-shadow:0 0 10px rgba(78,208,138,.45)}
+  .placar .total{font-family:'Courier New',monospace;font-size:1.6rem;color:var(--laranja);margin-top:8px}
+  /* ---- blocos ---- */
+  .bloco{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#20263a,#171b26);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--laranja);color:#2a1d00;font-weight:bold;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.gb .bloco-cab .num{background:var(--azul);color:#06203a}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:6px}
+  .texto .destaque{color:var(--laranja);font-weight:bold}
+  .bloco.gb .texto .destaque{color:var(--azul)}
+  .olhar{background:#21283a;border-left:3px solid var(--amarelo);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--amarelo)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#141925;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#1d3550;color:#bcdcf7}
+  .tag.apl{background:#1f3f2d;color:#aee3c3}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#0b0e15;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3a12;border:1px solid var(--laranja);color:#ffeccb}
+  .aviso.vermelho{display:block;background:#471a1c;border:1px solid var(--vermelho);color:#ffd1cd}
+  .modelo{margin-top:10px;padding:10px 12px;background:#12301f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe3b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--azul);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1a20;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb9b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--azul);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#222838}
+  .revisar{background:#3a2d12;border:2px solid var(--laranja);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--laranja);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--azul);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe3b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- quiz / simulado ---- */
+  .codigo{background:linear-gradient(120deg,#153328,#1b4a35);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe3b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--azul),var(--laranja));width:0;transition:width .3s}
+  .q{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--azul);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema,.q .tipo{float:right;font-size:.7rem;color:var(--cinza);background:var(--fundo);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q .tipo.rom{color:#f3d58a;border-color:var(--laranja)}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .afirm{background:#141925;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}
+  .afirm.no{border-left-color:#777;color:#aaa}
+  .alt{display:block;background:#141925;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--laranja)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--laranja);background:#2a2314}
+  .alt.certa{border-color:var(--verde);background:#12301f}
+  .alt.errada{border-color:#4a4a55;background:#1b1d25;color:#a7a7b2}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1a20}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#0f131d;border-left:3px solid var(--laranja);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--laranja);color:#2a1d00;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .gab{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  /* ---- resumo ---- */
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .sec .pill.gb{background:var(--azul);color:#06203a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .card{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--laranja)}
+  .card.gb{border-top-color:var(--azul)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--laranja)}
+  .card.gb b{color:var(--azul)}
+  .grande{background:linear-gradient(120deg,#20263a,#171b26);border:2px solid var(--laranja);border-radius:16px;padding:16px;font-size:1.02rem}
+  .grande b{color:var(--amarelo)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .pegbox{background:#3a1a20;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .pegbox b{color:#ffb9b3}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:185px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#242b3f,#171b26);border:1px solid var(--aco2);font-weight:bold;font-size:1rem}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#12301f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#222838}
+  .duelo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .duelo .lado{background:#141925;border-radius:12px;padding:12px;border:2px solid var(--aco2);text-align:center}
+  .duelo .lado.l1{border-color:var(--azul)}
+  .duelo .lado.l2{border-color:var(--laranja)}
+  .duelo .lado .ic{font-size:2rem}
+  .duelo h4{margin:4px 0}
+  .duelo.tres{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:600px){.duelo,.duelo.tres{grid-template-columns:1fr}}
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .numeros div{background:#0a0c12;border:1px solid #272d3c;border-radius:12px;padding:10px;text-align:center;font-size:.82rem}
+  .numeros div span{display:block;font-family:'Courier New',monospace;font-size:1.35rem;font-weight:bold;color:var(--laranja)}
+  .linha{border-left:3px solid var(--laranja);margin:10px 0 10px 10px;padding-left:16px}
+  .linha .ev{position:relative;margin-bottom:12px}
+  .linha .ev:before{content:"";position:absolute;left:-23px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 3px rgba(232,178,60,.2)}
+  .linha .ev b{color:var(--amarelo);display:block;font-family:'Courier New',monospace}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--laranja)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe3b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .fim a,.fim a.btn{display:inline-block;margin:6px;background:var(--azul);color:#06203a;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- index ---- */
+  .selo-pais{display:none;background:#153328;border:1px solid var(--verde);color:#8fe3b4;border-radius:10px;padding:10px 14px;margin:12px 0;text-align:center;font-weight:bold}
+  .selo-pais.show{display:block}
+  .selo-pais button{margin-left:10px;background:transparent;border:1px solid var(--verde);color:#8fe3b4;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit}
+  .trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+  .trilha .card{position:relative;background:var(--fundo2);border:1px solid var(--aco);border-top:1px solid var(--aco);border-radius:16px;padding:16px;text-decoration:none;color:var(--texto);display:block;transition:transform .15s,box-shadow .15s}
+  .trilha .card .passo{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)}
+  .trilha .card .emoji{font-size:2rem;margin:4px 0}
+  .trilha .card h3{font-size:1.05rem;margin-bottom:6px}
+  .trilha .card p{font-size:.85rem;color:#c3cada}
+  .trilha .card .estado{margin-top:10px;font-size:.8rem;font-weight:bold;padding:6px 8px;border-radius:8px}
+  .trilha .card.aberto{border-color:var(--laranja)}
+  .trilha .card.aberto:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(232,178,60,.22)}
+  .trilha .card.aberto .estado{background:#2a2314;color:var(--laranja)}
+  .trilha .card.novo{animation:brilho 1.6s ease-in-out 3;border-color:var(--laranja)}
+  @keyframes brilho{0%,100%{box-shadow:0 0 0 rgba(232,178,60,0)}50%{box-shadow:0 0 22px rgba(232,178,60,.6)}}
+  .trilha .card.novo .estado{background:#3a2d12;color:var(--laranja)}
+  .trilha .card.feito{border-color:var(--verde)}
+  .trilha .card.feito .estado{background:#12301f;color:#8fe3b4}
+  .trilha .card.trancado{opacity:.55;filter:grayscale(.6);pointer-events:none;cursor:not-allowed}
+  .trilha .card.trancado .estado{background:#1d212c;color:var(--cinza)}
+  .trilha .card .cadeado{position:absolute;top:10px;right:12px;font-size:1.3rem;padding:0}
+  .como{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .como h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .como ol{margin-left:20px}
+  .como li{margin-bottom:6px}
+  .cai{background:#21283a;border-left:4px solid var(--amarelo);border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;font-size:.93rem}
+  .cai h2{color:var(--amarelo);font-size:1.05rem;margin-bottom:6px}
+  .cai p{margin-bottom:6px}
+  .rel{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0}
+  .rel h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .rel input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:170px;text-transform:uppercase}
+  .rel button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px;cursor:pointer;font-family:inherit}
+  .rel .out{margin-top:12px;font-size:.9rem}
+  .rel .bloco{background:#141925;border:1px solid var(--aco);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .rel .bloco b{color:var(--laranja)}
+  .rel .liberar{margin-top:10px;background:var(--verde);color:#04231a}
+  .rel .perigo{background:#471a1c;color:#ffd1cd;border:1px solid var(--vermelho)}
+  .dica{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.9rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:16px 0}
+  .dica b{color:#7a4a00}
+  /* ---- modais ---- */
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,8,14,.92);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--laranja);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--laranja);color:#2a1d00;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none;font-family:inherit;cursor:pointer}
+  .modal button.sec,.modal .mini{background:transparent;border:1px solid var(--aco2);color:var(--texto);margin-left:8px}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Elos do Juramento · História 6º ano · Colégio São José</div>
+  <h1>📖 Leitura Guiada — A Forja dos Elos</h1>
+  <p>Feudalismo · Livro de História 6º ano, pp. 296–304 · Prova em 09/11/2026</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>⛓️ Como funciona a forja</h2>
+    <p>O feudalismo era uma <b>corrente de juramentos</b>: o rei ligado ao senhor feudal, o senhor ligado ao vassalo, o vassalo ligado ao servo. Nesta leitura você vai <b>forjar essa corrente elo por elo</b>, na mesma ordem do livro — da queda de Roma até o dia em que a corrente se parte. São <b>10 elos</b>. Em cada um, leia o texto e <b>escreva com as suas palavras</b> as respostas das 3 perguntas.</p>
+    <ol>
+      <li>Leia o elo com calma. Tudo aqui vem do seu livro (pp. 296–304).</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b>. Copiar o texto não vale.</li>
+      <li>Clique em <b>Conferir</b>: aparecem a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com os 10 elos conferidos e a autoavaliação respondida, a <b>🎯 Prova de Fidelidade (Quiz) destrava</b>.</li>
+    </ol>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="placar">
+    <h3>⛓️ A corrente</h3>
+    <p class="sub">Clique num elo para ir até ele. Verde = elo forjado (conferido) · Dourado = aberto.</p>
+    <div class="pts" id="pts"></div>
+    <div class="total" id="placar-total">00 / 10</div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 10 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+
+      <li><b>Servo não é escravizado.</b> O servo tinha a liberdade limitada e muitas obrigações, mas não era propriedade de ninguém. Escravizados existiam em <b>número reduzido</b> e cuidavam, em geral, das tarefas domésticas.</li>
+      <li><b>Vilão não é o “bandido”.</b> No feudalismo, vilão é o camponês que <b>não estava ligado à terra</b> e podia se mudar e escolher para quem trabalhar.</li>
+      <li><b>Suserano × vassalo:</b> suserano é quem <b>concede</b> o feudo; vassalo é quem <b>recebe</b> e jura fidelidade. O mesmo nobre podia ser as duas coisas ao mesmo tempo.</li>
+      <li><b>Corveia é trabalho; talha é produto.</b> Corveia = trabalhar 2 a 3 vezes por semana no manso senhorial. Talha = entregar parte da produção do manso servil.</li>
+      <li><b>Banalidade</b> é a taxa para usar <b>moinho, forno e outros equipamentos</b> do senhor — não é trabalho nem parte da colheita.</li>
+      <li><b>O dízimo é da Igreja</b>, não do senhor feudal, e corresponde a <b>10% da produção mensal</b>.</li>
+      <li><b>Manso senhorial × manso servil:</b> o senhorial é a grande porção cuja produção vai toda para o senhor; o servil são os <b>pequenos lotes</b> que o servo cultiva para o próprio sustento.</li>
+      <li><b>Oratores, bellatores, laboratores:</b> quem reza é o clero, quem guerreia é a nobreza, quem trabalha são os camponeses. Não inverta na hora da prova.</li>
+      <li><b>Clóvis (481) não é Carlos Magno (768).</b> Clóvis é da dinastia <b>merovíngia</b> e se converteu ao cristianismo; Carlos Magno é <b>carolíngio</b> e foi coroado pelo papa Leão III em <b>800</b>.</li>
+      <li><b>Cisma do Oriente (1054) não é a queda de Constantinopla (1453).</b> O cisma dividiu o cristianismo em católica romana e ortodoxa; a queda foi a conquista pelos turco-otomanos.</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Elo</h3>
+    <table>
+      <thead><tr><th>Tópico da prova</th><th>Fonte</th><th>Elo</th></tr></thead>
+      <tbody>
+
+        <tr><td>Idade Média: séculos V ao XV; Alta e Baixa Idade Média; fusão romano-germânica; reinos bárbaros; ruralização</td><td>296</td><td>1</td></tr>
+        <tr><td>Heranças romanas (Igreja, latim, colonato) e germânicas (comitatus, guerreiro, língua)</td><td>296 (caixa MAIS!)</td><td>1 e 2</td></tr>
+        <tr><td>Reino Franco; Clóvis e a dinastia merovíngia; Carlos Magno e a dinastia carolíngia; coroação de 800; educação pelo clero; fragmentação do império</td><td>297</td><td>2</td></tr>
+        <tr><td>O que é feudalismo; vassalagem; suserano e vassalo; feudo; servos e vilões; homenagem; descentralização</td><td>298</td><td>3</td></tr>
+        <tr><td>Organização do senhorio: manso senhorial, manso servil e terras comunais; os espaços do feudo</td><td>298</td><td>4</td></tr>
+        <tr><td>O trabalho no senhorio: servidão, corveia, talha, banalidade e dízimo</td><td>299</td><td>5</td></tr>
+        <tr><td>Produção agrícola, fome, autossuficiência, moedas e escambo; alimentação de nobres e servos</td><td>299</td><td>6</td></tr>
+        <tr><td>A sociedade feudal: três estamentos; alto e baixo clero; nobreza; servos, vilões e escravizados</td><td>300</td><td>7</td></tr>
+        <tr><td>O cotidiano feudal (banquetes, torneios, xadrez, festas católicas) e o papel da Igreja (teocentrismo, dogmas, excomunhão)</td><td>300–301</td><td>8</td></tr>
+        <tr><td>O Oriente: Império Bizantino, Justiniano, Código Justiniano, cesaropapismo, Cisma do Oriente, 1453</td><td>302</td><td>9</td></tr>
+        <tr><td>Império Árabe-Islâmico: Maomé, cinco pilares, Caaba, Hégira, sunitas e xiitas, califados, legados</td><td>303</td><td>9</td></tr>
+        <tr><td>Entre Mapas: religiosidade na Idade Média e o mapa do predomínio religioso no século XI</td><td>304</td><td>9</td></tr>
+        <tr><td>A decadência do feudalismo: crises no campo, Peste Negra, cidades e comércio, monarquias, Renascimento</td><td>slides da aula + esquema da p. 296</td><td>10</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:8px;font-size:.85rem;color:var(--cinza)">Os elos 1 a 9 saíram do capítulo <b>“Mundo feudal”</b> do livro de História do 6º ano (Módulo 8 — <i>Da antiguidade ao medievo</i>, pp. 296 a 304). O elo 10, sobre a <b>decadência do feudalismo</b>, não está nessas páginas: ele veio dos <b>slides enviados pela escola</b> para esta prova, cruzados com o esquema da Baixa Idade Média da p. 296.</p>
+  </div>
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o jovem aprendiz for conferindo os elos, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando os 10 elos estiverem conferidos e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. ⛓️ Boa forja e boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='elos_do_juramento';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== DADOS DOS ELOS (conteúdo do livro de História 6º, pp. 296–304, lido na plataforma da escola; elo 10 dos slides da aula) ====== */
+var BLOCOS = [
+ {
+  "porto": "Elo 1 · A forja acende · Livro p. 296",
+  "emoji": "🏰",
+  "u": "gb",
+  "titulo": "O mundo feudal nasce",
+  "texto": [
+   "A primeira peça da corrente é o tempo. O período histórico chamado de <b>Idade Média</b> corresponde ao recorte que vai do <span class='destaque'>século V ao século XV</span> — cerca de <b>1 000 anos</b>. Por ser tão longo, costuma-se dividi-lo em dois momentos: a <span class='destaque'>Alta Idade Média</span> (séculos V ao X) e a <span class='destaque'>Baixa Idade Média</span> (séculos XI ao XV).",
+   "Na <b>Alta Idade Média</b> aconteceram as migrações dos povos bárbaros, o Reino Franco, o <b>feudalismo</b>, o declínio das cidades e do comércio e o fortalecimento dos senhores feudais e da Igreja católica. Na <b>Baixa Idade Média</b> vieram as Cruzadas, o Renascimento Comercial e Urbano, a redução do poder dos senhores feudais, o comércio com o Oriente e o Renascimento Cultural e Científico.",
+   "Nos primeiros séculos da Alta Idade Média, depois da queda do Império Romano do Ocidente, as populações germânicas se uniram, por meio de <b>casamentos e laços de fidelidade</b>, aos descendentes dos povos que já viviam no território romano. Aspectos da civilização romana e das culturas bárbaras se fundiram, dando origem ao chamado <span class='destaque'>mundo feudal</span>.",
+   "Outra marca do período é a <b>fragmentação territorial</b> da Europa ocidental em diversos reinos bárbaros: o Reino dos Suevos e o dos Visigodos, na península Ibérica; o Reino Franco e o Reino dos Burgúndios, na parte central da Europa; o Reino Anglo-saxão, na parte norte; e o Reino dos Ostrogodos, na península Itálica.",
+   "Outros povos bárbaros continuaram migrando em direção ao Ocidente, o que ajudou no processo de <b>ruralização</b> (as pessoas saindo das cidades para o campo) e de fragmentação do poder político. Em meio aos constantes conflitos, a <b>proteção oferecida pelos senhores feudais</b> — membros da elite guerreira e responsáveis pelas grandes propriedades rurais — aumentou o poder exercido por eles.",
+   "<div class='olhar'><b>Caixa MAIS! da p. 296:</b> mesmo depois da queda de Roma, restaram <b>heranças romanas</b> na Europa medieval — a presença da Igreja católica nos reinos bárbaros, o uso do <b>latim</b> como língua oficial pela Igreja e a experiência do <b>colonato</b>. E também <b>heranças germânicas</b>: os laços de lealdade inspirados no <i>comitatus</i>, a valorização da figura do guerreiro e a língua falada, que influenciou a formação de diversas línguas europeias modernas.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Com as suas palavras: por que a Idade Média costuma ser dividida em Alta e Baixa Idade Média?",
+    "modelo": "Porque ela é muito longa — vai do século V ao XV, quase mil anos. Para estudar melhor, divide-se em Alta Idade Média (séculos V ao X) e Baixa Idade Média (séculos XI ao XV), que tiveram acontecimentos bem diferentes.",
+    "chk": [
+     "Disse que o período é muito longo (séculos V a XV, cerca de mil anos)?",
+     "Disse quais séculos são de cada parte (V–X e XI–XV)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Um colega afirma: “quando o Império Romano do Ocidente caiu, tudo o que era romano acabou na Europa”. Mostre, com dois exemplos do texto, que ele está errado.",
+    "modelo": "Está errado porque sobraram heranças romanas: a Igreja católica continuou presente nos reinos bárbaros e o latim seguiu como língua oficial dela. O colonato, que prendia o trabalhador à terra, também continuou influenciando o mundo feudal.",
+    "chk": [
+     "Dei pelo menos dois exemplos de herança romana (Igreja, latim ou colonato)?",
+     "Expliquei que essas coisas continuaram depois da queda do Império?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique, como se fosse para um aluno mais novo, por que os senhores feudais foram ficando cada vez mais poderosos nesse período.",
+    "modelo": "Como havia muitos conflitos e invasões, as pessoas precisavam de proteção. Quem tinha as grandes propriedades rurais e fazia parte da elite guerreira era quem podia proteger. Por isso, quem procurava essa proteção acabava dependendo do senhor feudal, e o poder dele foi crescendo.",
+    "chk": [
+     "Liguei o poder deles à insegurança e aos conflitos da época?",
+     "Disse que eles ofereciam proteção e eram donos das grandes propriedades rurais?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 2 · O martelo franco · Livro p. 297",
+  "emoji": "👑",
+  "u": "",
+  "titulo": "O Reino Franco e Carlos Magno",
+  "texto": [
+   "O <span class='destaque'>Reino Franco</span>, criado a partir da expansão dos francos — um dos povos germânicos que lutaram ao lado dos romanos —, teve um papel importante na formação das bases do mundo feudal durante a Alta Idade Média. A influência dele apareceu na organização social, na política, na cultura e na religião.",
+   "Em <b>481 d.C.</b>, o rei <span class='destaque'>Clóvis</span> converteu-se ao cristianismo. Com isso fortaleceu a Igreja católica, que passou a contar com o apoio do governante para catequizar outros povos. Clóvis pertencia à <b>dinastia merovíngia</b>, nome que deriva de Meroveu, um importante líder e guerreiro franco do qual ele supostamente descendia. Para o rei franco, a aproximação com a Igreja permitiu ampliar o seu poder e também o domínio territorial.",
+   "Em <b>768</b>, <span class='destaque'>Carlos Magno</span> assumiu o controle do Reino Franco, consolidando o poder da <b>dinastia carolíngia</b>. Essa dinastia expandiu o território franco, transformando-o no <b>Império Carolíngio</b>. Além da expansão territorial, Carlos Magno aprimorou as práticas do <i>comitatus</i> e do colonato e reafirmou a aliança do reino com a Igreja católica.",
+   "A <span class='destaque'>coroação de Carlos Magno como imperador</span>, realizada pelo <b>papa Leão III</b> no ano <b>800</b>, confirmou o poder do governante e consolidou a influência do chefe da Igreja nos rumos políticos da Europa.",
+   "Para administrar o vasto território, o imperador incentivou a <b>padronização da educação</b> por meio da Igreja. Ela era responsável por copiar as obras da Antiguidade Clássica e, ao mesmo tempo, usar o ensino de Gramática, Lógica e Retórica para educar o clero e torná-lo capaz de impor, em todo o império, as mesmas cerimônias, rituais e liturgias.",
+   "O imperador passou a ser visto como o responsável por garantir a conversão de seus súditos, apoiando o papel desempenhado pela Igreja. Em troca, a Igreja garantiria que todos os povos dominados reconhecessem a liderança exercida por Carlos Magno. Dessa forma, a Igreja católica passou a ter <b>mais poder de decisão sobre os governantes e sobre a população</b>, pois a instituição passava a <b>validar o poder do rei</b>. Após a morte de Carlos Magno, seus sucessores não foram capazes de manter o domínio sobre o império, que se <b>fragmentou em vários reinos</b>.",
+   "<div class='olhar'><b>Caixa MAIS! da p. 297:</b> tanto o <i>comitatus</i> quanto o colonato criavam vínculos duradouros, que muitas vezes se estendiam até o fim da vida das pessoas — e foram as bases do modelo feudal. No <b><i>comitatus</i></b>, os guerreiros germânicos reconheciam a autoridade de um chefe militar sobre os demais, mantendo com ele uma relação de <b>lealdade e honra</b>. No regime de <b>colonato</b>, os grandes proprietários romanos arrendavam partes de suas terras e, em troca, os camponeses ofereciam <b>bens e serviços</b> a seu senhor. <br><b>Glossário da p. 297 — Dinastia:</b> reis e rainhas pertencentes a uma mesma família.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "O que foi a coroação de Carlos Magno em 800 e por que ela foi tão importante para a Igreja católica?",
+    "modelo": "Em 800, o papa Leão III coroou Carlos Magno imperador. Isso confirmou o poder dele e, ao mesmo tempo, mostrou que o chefe da Igreja tinha influência nos rumos políticos da Europa: era a Igreja que validava o poder do rei.",
+    "chk": [
+     "Disse quem coroou quem, e em que ano?",
+     "Expliquei que a Igreja passou a validar o poder do governante?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique, com as suas palavras, a diferença entre o comitatus e o colonato — e diga o que cada um “emprestou” ao feudalismo.",
+    "modelo": "No comitatus, guerreiros germânicos obedeciam a um chefe militar numa relação de lealdade e honra: daí vieram os laços de fidelidade entre nobres. No colonato, proprietários romanos arrendavam terras e os camponeses davam bens e serviços em troca: daí veio a ligação do trabalhador com a terra do senhor.",
+    "chk": [
+     "Expliquei o comitatus como lealdade entre guerreiros e um chefe?",
+     "Expliquei o colonato como terra arrendada em troca de bens e serviços?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Carlos Magno investiu na educação do clero. Que vantagem isso trazia para quem governava um império enorme? Responda com as suas palavras.",
+    "modelo": "Com o clero instruído do mesmo jeito, as cerimônias, os rituais e as liturgias ficavam iguais em todo o império. Isso ajudava a unir povos muito diferentes e facilitava o governo de um território enorme.",
+    "chk": [
+     "Disse que a educação padronizava cerimônias e rituais em todo o império?",
+     "Liguei isso à facilidade de governar um território muito grande?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 3 · O juramento · Livro p. 298",
+  "emoji": "🤝",
+  "u": "gb",
+  "titulo": "O que é feudalismo? A vassalagem",
+  "texto": [
+   "No período medieval, ocorreu a formação do <span class='destaque'>modelo social feudal</span>, que se tornou predominante em praticamente toda a Europa Ocidental cristã. Esse modelo teve uma formação longa e complexa, com raízes em instituições romanas e germânicas, como o <b>colonato</b> e o <b><i>comitatus</i></b>, e também numa prática amplamente utilizada por Carlos Magno: a <b>distribuição de terras e cargos a nobres aliados</b>, a fim de garantir a administração de seu império. Em troca, esses nobres <b>juravam fidelidade</b> a ele e se comprometiam a apoiá-lo nas guerras, na política e na economia. Essa relação, conhecida como <span class='destaque'>vassalagem</span>, foi mantida por outros monarcas e se estendeu aos membros da nobreza.",
+   "Na vassalagem, firmavam-se <b>compromissos mútuos</b>: o <span class='destaque'>suserano</span>, que era a parte mais poderosa, concedia terras e benefícios a seu <span class='destaque'>vassalo</span>; este, em troca, jurava-lhe fidelidade e apoio. Os bens recebidos pelos vassalos foram chamados de <b>feudos</b>.",
+   "Atenção a um detalhe que a prova adora: embora o feudo fosse geralmente associado a uma grande extensão de <b>terra</b>, ele também poderia ser um <b>benefício</b>, como um <b>cargo importante</b> ou o <b>direito de cobrar impostos</b> da população.",
+   "Além disso, o vassalo tinha ampla autoridade sobre os camponeses que viviam e trabalhavam nas terras recebidas, que eram chamados de <span class='destaque'>servos</span>. Os servos ocupavam a <b>base da pirâmide social</b> no feudalismo, e deviam lealdade e obediência aos vassalos, que, por sua vez, eram submetidos a seus suseranos.",
+   "Além dos servos, havia também a figura dos chamados <span class='destaque'>vilões</span>: camponeses que <b>não estavam ligados à terra</b>, possuindo maior liberdade para se mudar e escolher para quem trabalhar. Eles também cultivavam a terra e criavam animais, porém com maior grau de autonomia. Muitas vezes exerciam ofícios, trabalhavam no comércio local e regional ou ajudavam os suseranos na administração.",
+   "Com o passar das gerações, o juramento de fidelidade de um vassalo ao suserano adquiriu regras e se transformou em uma cerimônia chamada de <span class='destaque'>homenagem</span>, que incluía rituais e juramentos específicos. Desse modo, um nobre que recebesse um feudo e se tornasse vassalo poderia <b>também tornar-se suserano de outro nobre</b>, assumindo diferentes papéis na hierarquia feudal. A divisão sucessiva dos bens e da autoridade levou à <b>descentralização do poder político</b> na Europa Ocidental. Como muitos aspectos da vida do período medieval giravam em torno das relações feudais, esse modelo de organização política, econômica e social ficou conhecido como <span class='destaque'>feudalismo</span>."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Explique com as suas palavras o que era a vassalagem: o que cada lado dava ao outro?",
+    "modelo": "Era um acordo de compromissos mútuos. O suserano, que era o mais poderoso, dava terras e benefícios (os feudos). O vassalo, em troca, jurava fidelidade e apoio ao suserano — na guerra, na política e na economia.",
+    "chk": [
+     "Disse que o suserano dava terras ou benefícios?",
+     "Disse que o vassalo jurava fidelidade e apoio em troca?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Um nobre recebe um feudo das mãos de um rei e, depois, entrega parte dessas terras a outro nobre. Ele é suserano, vassalo, ou os dois ao mesmo tempo? Justifique.",
+    "modelo": "Os dois ao mesmo tempo: ele é vassalo do rei, de quem recebeu o feudo, e é suserano do outro nobre, a quem concedeu terras. O texto diz que um mesmo nobre podia assumir diferentes papéis na hierarquia feudal.",
+    "chk": [
+     "Respondi que ele era as duas coisas ao mesmo tempo?",
+     "Justifiquei dizendo de quem ele recebe e a quem ele concede?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Dê um exemplo de feudo que NÃO seja um pedaço de terra e explique por que ele também valia como feudo.",
+    "modelo": "Podia ser um cargo importante ou o direito de cobrar impostos da população. Vale como feudo porque o feudo era o benefício concedido pelo suserano ao vassalo — e nem todo benefício era terra.",
+    "chk": [
+     "Citei um cargo importante ou o direito de cobrar impostos?",
+     "Expliquei que feudo era o benefício concedido na vassalagem, não só terra?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 4 · O senhorio · Livro p. 298",
+  "emoji": "🗺️",
+  "u": "",
+  "titulo": "A organização do senhorio",
+  "texto": [
+   "<span class='destaque'>“Senhorio”</span> é o termo utilizado para se referir às <b>terras</b> e ao <b>direito de cobrar taxas</b> das pessoas que habitavam essas terras, que eram concedidos ao vassalo. É comum encontrarmos a expressão <b>“senhor feudal”</b> para se referir ao nobre responsável pelo senhorio.",
+   "Essas terras eram exploradas por meio de atividades agrícolas, permitindo <b>a sobrevivência dos servos</b> e <b>o acúmulo de riquezas pelo senhor feudal</b>. O senhorio é comumente chamado de <b>feudo</b>, pois tratava-se de um dos bens concedidos na vassalagem.",
+   "O senhorio era repartido em três tipos de terra — e trocar um pelo outro é um dos erros mais comuns na prova:",
+   "<ul><li><span class='destaque'>Manso senhorial</span>: uma grande porção de terra na qual <b>tudo o que era produzido</b> pelos servos e vilões <b>se tornava propriedade do senhor feudal</b>.</li><li><span class='destaque'>Manso servil</span>: <b>pequenos lotes</b> de terra cultivados pelos servos <b>para o próprio sustento</b>.</li><li><span class='destaque'>Terras comunais</span>: florestas, pastagens e outras áreas <b>não cultivadas</b> do senhorio, utilizadas <b>tanto por servos como por senhores feudais</b>.</li></ul>",
+   "<div class='olhar'><b>A ilustração da p. 298</b> mostra os espaços físicos de um feudo europeu: o <b>castelo</b> no alto, a <b>plantação</b>, o <b>moinho</b>, os <b>pastos</b>, a <b>igreja</b>, a <b>casa do servo</b>, o <b>manso comunal</b>, o <b>manso senhorial</b> e o <b>manso servil</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Diga com as suas palavras qual é a diferença entre manso senhorial, manso servil e terras comunais.",
+    "modelo": "O manso senhorial é a grande porção de terra cuja produção vai toda para o senhor feudal. O manso servil são os pequenos lotes que os servos cultivam para se sustentar. As terras comunais são as áreas não cultivadas, como florestas e pastagens, usadas tanto pelos servos quanto pelos senhores.",
+    "chk": [
+     "Disse que a produção do manso senhorial era do senhor feudal?",
+     "Disse que o manso servil sustentava o servo e que as comunais eram de uso dos dois?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Um servo colhe trigo trabalhando no manso senhorial e, no fim do dia, colhe cenouras no seu manso servil. Quem fica com cada colheita? Explique.",
+    "modelo": "O trigo do manso senhorial fica com o senhor feudal, porque tudo o que é produzido nessa terra é propriedade dele. As cenouras do manso servil ficam com o servo, porque esse lote é cultivado para o próprio sustento dele.",
+    "chk": [
+     "Disse que a produção do manso senhorial fica com o senhor feudal?",
+     "Disse que a do manso servil fica com o servo, para o sustento dele?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Por que o texto diz que o “senhorio” não é só a terra, mas também um direito? Explique como se estivesse ensinando um colega.",
+    "modelo": "Porque, junto com as terras, o vassalo recebia o direito de cobrar taxas das pessoas que moravam nelas. Ou seja, o senhorio é a terra mais o poder de cobrar de quem vive ali.",
+    "chk": [
+     "Citei o direito de cobrar taxas de quem morava nas terras?",
+     "Mostrei que o senhorio junta as duas coisas (terra + direito)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 5 · As correntes do servo · Livro p. 299",
+  "emoji": "⛓️",
+  "u": "gb",
+  "titulo": "Corveia, talha, banalidade e dízimo",
+  "texto": [
+   "No manso servil viviam os <span class='destaque'>servos</span>: camponeses que estavam ligados a essa porção de terra sob domínio de um senhor feudal. Eles realizavam todo tipo de trabalho nos feudos e faziam o <b>pagamento de uma série de taxas</b> impostas pelos senhores feudais, em troca de <b>proteção</b> e do <b>direito de utilizar as terras</b> e os instrumentos necessários para mantê-las, numa relação de <span class='destaque'>servidão</span>.",
+   "Essas são as quatro obrigações que mais caem em prova. Guarde a diferença entre elas:",
+   "<ul><li><span class='destaque'>Corveia</span>: <b>trabalhar duas a três vezes por semana no manso senhorial</b>. É trabalho, não é produto.</li><li><span class='destaque'>Talha</span>: <b>destinar uma parte da produção do manso servil ao senhor feudal</b>. É produto, não é trabalho.</li><li><span class='destaque'>Banalidade</span>: pagamento de uma <b>taxa para usar o moinho, o forno e outros equipamentos</b> do senhor.</li><li><span class='destaque'>Dízimo</span>: cobrado <b>pela Igreja católica</b> (e não pelo senhor feudal), correspondia a <b>10% da produção mensal</b> de cada pessoa.</li></ul>",
+   "<div class='olhar'><b>Macete:</b> corveia = <b>c</b>orpo (o trabalho dele); talha = o que se <b>talha</b> (corta) da colheita e entrega; banalidade = pagar para usar as <b>b</b>enfeitorias (moinho, forno); dízimo = <b>dez</b> por cento, e vai para a Igreja.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Explique com as suas palavras o que era a corveia.",
+    "modelo": "Era a obrigação do servo de trabalhar de graça nas terras do senhor feudal — no manso senhorial —, duas a três vezes por semana.",
+    "chk": [
+     "Disse que era trabalho no manso senhorial (terra do senhor)?",
+     "Citei que acontecia duas a três vezes por semana?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Um servo leva o trigo ao moinho do senhor feudal para moer e precisa pagar por isso. Que obrigação é essa? E se, em vez disso, ele entregasse parte da colheita do próprio lote, qual seria?",
+    "modelo": "Pagar para usar o moinho é a banalidade. Entregar parte da produção do manso servil ao senhor feudal é a talha.",
+    "chk": [
+     "Identifiquei a banalidade como a taxa para usar o moinho/forno?",
+     "Identifiquei a talha como a parte da produção do manso servil?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Invente a semana de um servo e mostre, no seu exemplo, pelo menos três obrigações diferentes que ele teria de cumprir.",
+    "modelo": "Exemplo: na segunda e na quarta ele trabalha no manso senhorial (corveia); no fim do mês entrega parte da colheita do seu lote ao senhor (talha); quando leva os grãos ao moinho, paga uma taxa (banalidade); e separa 10% da produção para a Igreja (dízimo).",
+    "chk": [
+     "Montei um exemplo com pelo menos três obrigações diferentes?",
+     "Usei cada nome no sentido certo (corveia, talha, banalidade ou dízimo)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 6 · A colheita e a fome · Livro p. 299",
+  "emoji": "🌾",
+  "u": "",
+  "titulo": "A vida no feudo: produção, fome e escambo",
+  "texto": [
+   "No feudo, os camponeses <b>aravam, semeavam e faziam a colheita</b> das culturas, além de erguerem as construções e realizarem as reformas necessárias. Plantavam principalmente cereais como o <b>trigo</b> e o <b>centeio</b>, utilizados na produção de farinhas, pois o <span class='destaque'>pão era a base da alimentação medieval</span>. Também cultivavam verduras e hortaliças e criavam animais como porcos, ovelhas e cabras.",
+   "As técnicas e ferramentas utilizadas na agricultura <b>não resultavam em grande produtividade</b>. Além disso, o solo se <b>esgotava</b> com o passar do tempo. Por isso, quando ocorriam períodos de seca ou intensas chuvas, a produção de alimentos diminuía e os servos enfrentavam o <span class='destaque'>problema da fome</span>.",
+   "A maior parte dos utensílios necessários para o dia a dia era fabricada nos domínios do senhor feudal e a ele pertenciam. Dessa forma, os feudos buscavam a <span class='destaque'>autossuficiência</span>, produzindo a maior parte dos bens necessários para a sobrevivência da população.",
+   "A circulação de <b>moedas era escassa</b>, por causa do declínio do comércio e da grande fragmentação política. Algumas propriedades feudais <b>cunhavam suas próprias moedas</b>, o que dificultava o comércio de modo mais abrangente — embora ele não tenha desaparecido por completo. Em muitas feiras medievais, a prática do <span class='destaque'>escambo</span> (troca de produtos) tornou-se comum.",
+   "<div class='olhar'><b>Jovem Cidadão (p. 299):</b> cada região tinha sua cultura alimentar. Os <b>nobres</b> comiam um cardápio rico em proteínas — carnes de vaca, porco, cordeiro, carneiro —, além de pães, legumes, cereais, frutas, especiarias e vinhos. Já os <b>servos</b> eram proibidos de comer algumas carnes, como as de caça. Os camponeses comiam carne de aves e de peixes, mas mesmo essas eram raras no dia a dia, por serem caras, ficando reservadas para festas e ocasiões especiais. A base da dieta dos mais pobres era feita de <b>pães, cereais e legumes</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Por que a fome era um problema comum no feudo, mesmo com tanta gente trabalhando na terra?",
+    "modelo": "Porque as técnicas e as ferramentas da agricultura não davam grande produtividade e o solo ia se esgotando. Quando vinha uma seca ou chuvas muito fortes, a produção caía e faltava comida para os servos.",
+    "chk": [
+     "Citei a baixa produtividade das técnicas e ferramentas (ou o esgotamento do solo)?",
+     "Citei a seca ou as chuvas intensas como gatilho da falta de alimento?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique com as suas palavras o que era o escambo e por que ele era tão usado nas feiras medievais.",
+    "modelo": "Escambo é trocar produto por produto, sem usar dinheiro. Era muito usado porque circulavam poucas moedas, e cada feudo podia ter a sua própria moeda, o que atrapalhava as compras e vendas.",
+    "chk": [
+     "Expliquei o escambo como troca de produtos, sem moeda?",
+     "Liguei isso à falta de moedas ou às moedas diferentes de cada feudo?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Compare, em poucas linhas, o prato de um nobre e o prato de um servo. O que essa diferença mostra sobre a sociedade feudal?",
+    "modelo": "O nobre comia carnes variadas, frutas, especiarias e vinho. O servo comia principalmente pão, cereais e legumes, e carne só em festas. Isso mostra que a sociedade feudal era muito desigual: o lugar de cada um aparecia até na comida.",
+    "chk": [
+     "Descrevi o que cada um comia, com pelo menos um exemplo de cada?",
+     "Concluí que isso mostra a desigualdade da sociedade feudal?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 7 · Os três anéis · Livro p. 300",
+  "emoji": "⚖️",
+  "u": "gb",
+  "titulo": "A sociedade feudal: os três estamentos",
+  "texto": [
+   "No modelo de sociedade feudal, a <b>Igreja católica</b> desempenhou um importante papel ao difundir uma interpretação religiosa a respeito da hierarquia social da época, baseada na ideia de que <b>Deus havia predeterminado a função de cada indivíduo</b>.",
+   "De acordo com essa visão, a sociedade feudal era dividida em três <span class='destaque'>estamentos</span> (ou ordens): os membros da Igreja formavam o grupo dos <b>que rezavam</b> (<i>oratores</i>); os membros da nobreza estavam incluídos no grupo dos <b>que guerreavam</b> (<i>bellatores</i>); e a maior parte da população era composta de <b>trabalhadores</b> (<i>laboratores</i>), geralmente camponeses. Nesse tipo de sociedade <b>não havia muitas oportunidades de mobilidade social</b>, pois o acesso a terras e aos benefícios era <b>hereditário</b>.",
+   "A Igreja católica era liderada pelo <b>papa</b>, que contava com o apoio dos <b>bispos</b> e dos <b>abades</b>, pertencentes ao <span class='destaque'>alto clero</span> — em geral, esses cargos eram ocupados por nobres. O <span class='destaque'>baixo clero</span>, por sua vez, era constituído de <b>párocos e monges</b>, em sua maioria homens de origem humilde. A partir do <b>século XII</b>, a proibição de casamento dos clérigos foi gradualmente instituída, o que contribuiu para que os bens fossem mantidos dentro da instituição. As <b>doações feitas pela nobreza</b> e o <b>recebimento do dízimo</b> proporcionaram à Igreja um intenso acúmulo de terras e bens, fazendo dela a <span class='destaque'>instituição mais rica da Europa</span>.",
+   "A <b>nobreza</b> era formada por reis, senhores feudais, cavaleiros e seus familiares. Conforme a tradição germânica, competia a ela dedicar-se à <b>guerra</b>, a fim de expandir seus domínios e proteger os habitantes de ataques de inimigos. Juntos, clero e nobreza exerciam o <b>poder político, econômico e cultural</b> sobre a sociedade feudal.",
+   "Entre os <b>trabalhadores</b>, havia os <b>servos</b>, os <b>vilões</b> e um <b>número reduzido de escravizados</b>. Com a instabilidade causada pelos conflitos com árabes, húngaros, eslavos, normandos e outros povos, muitos vilões preferiram se abrigar nos domínios de um senhor feudal em busca de proteção, <b>tornando-se servos</b>. Os escravizados eram geralmente encarregados das tarefas domésticas.",
+   "<div class='olhar'><b>Glossário da p. 300 — Estamento:</b> grupo social com <i>status</i> e direitos definidos por lei ou costume.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Quais eram os três estamentos da sociedade feudal e o que cada um deles fazia?",
+    "modelo": "Os oratores, que eram os membros da Igreja e rezavam; os bellatores, que eram a nobreza e guerreavam; e os laboratores, a maior parte da população, que trabalhava, geralmente no campo.",
+    "chk": [
+     "Nomeei os três grupos (oratores, bellatores e laboratores)?",
+     "Liguei cada um à sua função (rezar, guerrear e trabalhar)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "O filho de um camponês quer se tornar cavaleiro. Pelo que você leu, isso era fácil nessa sociedade? Explique o porquê.",
+    "modelo": "Não era fácil. A sociedade feudal tinha pouca mobilidade social, porque o acesso às terras e aos benefícios era hereditário — passava de pai para filho. Além disso, acreditava-se que Deus já havia definido a função de cada um.",
+    "chk": [
+     "Disse que havia pouca mobilidade social?",
+     "Expliquei que o acesso a terras e benefícios era hereditário (ou citei a ideia de função dada por Deus)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique, com as suas palavras, como a Igreja se tornou a instituição mais rica da Europa. Cite pelo menos duas formas de ela receber bens.",
+    "modelo": "Ela recebia doações da nobreza e cobrava o dízimo, que era 10% da produção mensal. Além disso, a partir do século XII os clérigos foram proibidos de casar, o que fez os bens ficarem dentro da própria instituição em vez de irem para famílias.",
+    "chk": [
+     "Citei as doações da nobreza e o dízimo?",
+     "Mencionei que a proibição do casamento ajudou a manter os bens na instituição?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 8 · O salão e o altar · Livro pp. 300–301",
+  "emoji": "⛪",
+  "u": "",
+  "titulo": "O cotidiano feudal e o poder da Igreja",
+  "texto": [
+   "No período medieval, até o <b>lazer</b> evidenciava as diferenças sociais. Entre os <b>nobres</b>, era comum a ocorrência de <b>banquetes</b> para comemorar casamentos e alianças, com farta oferta de comida e bebida, além de apresentações de artistas ambulantes e <b>jograis</b>. Também eram organizados grandiosos <b>torneios</b>, onde as competições entre cavaleiros eram a principal atração; com o tempo, viraram eventos bem organizados, com árbitros e prêmios aos vencedores. O <b>xadrez</b>, levado à Europa pelos <b>árabes</b>, era considerado um jogo de estratégia e tornou-se popular entre os nobres e o clero. Já os <b>camponeses</b> tinham os próprios jogos e promoviam disputas e lutas ao ar livre.",
+   "Porém os acontecimentos mais importantes eram as <span class='destaque'>festas católicas</span>. Além das festividades anuais, como a <b>Páscoa</b> e o <b>Natal</b>, batizados e casamentos eram cerimônias de grande importância. Também eram comuns ritos como as <b>procissões</b>, que reuniam pessoas de todos os estamentos.",
+   "Desde o reconhecimento do catolicismo como religião oficial do Império Romano, a Igreja católica foi conquistando cada vez mais influência até se tornar, durante a Idade Média, a <span class='destaque'>instituição mais poderosa da Europa</span>. Seu poder, como autoridade espiritual, <b>superava até mesmo o poder dos reis</b>, que, segundo a mentalidade da época, eram investidos do poder de governar pela Igreja, em acordo com a vontade divina.",
+   "A Igreja influenciava os hábitos, os costumes e os modos de pensar e de agir de todos os segmentos da sociedade europeia. Em consequência, a maior parte da produção artística e intelectual desse período alicerçou-se na visão de mundo e na moral cristãs.",
+   "Segundo essa visão de mundo <span class='destaque'>teocêntrica</span>, todos os fenômenos naturais eram explicados pela vontade divina, e a Igreja e seus clérigos eram os porta-vozes dessa vontade. Acreditava-se, por exemplo, que as <b>doenças</b> estavam relacionadas ao universo espiritual e, por consequência, a cura delas cabia aos representantes da Igreja. Todavia, as pessoas também recorriam a <b>tratamentos caseiros</b> baseados nos saberes populares, como os <b>emplastros</b>, os chás e os xaropes feitos com ervas. Muitos desses saberes vinham de povos seguidores de crenças anteriores ao cristianismo, a quem os clérigos chamavam de <b>pagãos</b>.",
+   "A <b>vigilância</b> da Igreja sobre os costumes e as práticas que desafiassem seu poder era constante. As manifestações contrárias às suas ideias e <b>dogmas</b> poderiam ser punidas com a <b>excomunhão</b> e, em alguns casos, até com a <b>morte</b>. Havia um permanente controle sobre o corpo das pessoas, <b>especialmente o corpo das mulheres</b>, que era considerado um instrumento propenso ao pecado, ligando os seres humanos ao mundo natural e os afastando de Deus.",
+   "<div class='olhar'><b>Glossário das pp. 300–301 — Jograis:</b> artistas populares na Idade Média, que viajavam pelas cidades oferecendo entretenimento em performances que incluíam música, dança, acrobacias e malabarismos. <b>Dogma:</b> princípio ou conjunto de princípios religiosos tidos como verdade absoluta e inquestionável. <b>Emplastro:</b> tipo de medicamento aplicado na pele para tratar diversas doenças. <b>Teocêntrica:</b> visão de mundo que coloca Deus no centro de tudo.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "O que quer dizer uma visão de mundo teocêntrica? Responda com as suas palavras.",
+    "modelo": "É a visão que coloca Deus no centro de tudo. Nela, todos os fenômenos naturais são explicados pela vontade divina, e a Igreja e seus clérigos são quem fala em nome dessa vontade.",
+    "chk": [
+     "Disse que é a visão que coloca Deus no centro de tudo?",
+     "Expliquei que os fenômenos eram explicados pela vontade divina?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Numa aldeia medieval, alguém adoece. Conte o que as pessoas provavelmente fariam, segundo o texto, e explique por quê.",
+    "modelo": "Procurariam os representantes da Igreja, porque se acreditava que a doença tinha causa espiritual e que a cura cabia a eles. Ao mesmo tempo, usariam tratamentos caseiros dos saberes populares, como emplastros, chás e xaropes de ervas.",
+    "chk": [
+     "Citei a procura pelos representantes da Igreja e o motivo (causa espiritual)?",
+     "Citei os tratamentos caseiros (emplastros, chás ou xaropes)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Mostre, com dois exemplos do texto, como até a diversão no feudo revelava a diferença entre nobres e camponeses.",
+    "modelo": "Os nobres tinham banquetes com jograis e torneios de cavaleiros com árbitros e prêmios, e jogavam xadrez. Os camponeses tinham os próprios jogos e faziam disputas e lutas ao ar livre. O tipo de diversão mostrava a que grupo a pessoa pertencia.",
+    "chk": [
+     "Dei um exemplo de diversão dos nobres (banquete, torneio ou xadrez)?",
+     "Dei um exemplo de diversão dos camponeses (jogos, disputas e lutas ao ar livre)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 9 · O outro lado do mapa · Livro pp. 302–304",
+  "emoji": "🕌",
+  "u": "gb",
+  "titulo": "O Oriente no período medieval",
+  "texto": [
+   "Com a divisão do Império Romano entre oriente e ocidente, e a fragmentação da parte ocidental em diversos reinos bárbaros, a porção oriental transformou-se no <span class='destaque'>Império Bizantino</span>, que se tornou um importante centro cultural e de poder durante a Idade Média. No século VII, na península Arábica, o surgimento de uma nova religião monoteísta, o <b>islamismo</b>, deu origem a um império que dominou o norte da África, a península Ibérica e partes da Ásia.",
+   "<b>Império Bizantino.</b> Ao assumir o poder em <b>527</b>, o imperador <span class='destaque'>Justiniano I</span> tinha como objetivo restaurar a antiga glória do Império Romano, reconquistando os territórios perdidos. Em suas campanhas militares ele conseguiu expandir o território bizantino, conquistando o norte da África e o litoral mediterrâneo da Europa. Foi também o responsável por promover a elaboração do <span class='destaque'>Código Justiniano</span>, um documento que compilava as leis romanas, garantindo a sua preservação. Após a morte de Justiniano, seus sucessores perderam territórios conquistados, reduzindo o império.",
+   "<b>Constantinopla</b>, a capital bizantina, tornou-se um importante centro comercial: produtos de diversas regiões do Oriente, como perfumes, sedas e porcelanas, chegavam até a Europa ocidental. Devido à sua posição geográfica, a cidade era <b>passagem obrigatória</b> para as rotas de comerciantes que circulavam entre o norte da África, a Europa e a Ásia. O Império arrecadava impostos, investidos no exército e em obras públicas. O cristianismo era a religião oficial, com forte influência das culturas grega e orientais.",
+   "Com a crescente centralização do poder, surgiu o modelo de governança chamado <span class='destaque'>cesaropapismo</span>, que concentrava a <b>liderança política e religiosa na figura do imperador</b>. Em pouco tempo, Constantinopla tornou-se o principal centro religioso cristão do Oriente. Isso aumentou a tensão entre o <b>papa</b>, líder da Igreja católica no ocidente, e o <b>imperador bizantino</b>, levando ao evento conhecido como <span class='destaque'>Cisma do Oriente, em 1054</span>: a divisão do mundo cristão em duas igrejas — a <b>Igreja católica romana</b>, liderada pelo papa, e a <b>Igreja ortodoxa</b>, liderada pelo imperador bizantino. Após o século XI o império enfraqueceu, sendo dominado em <b>1453</b>, quando a capital foi conquistada pelos <b>turco-otomanos</b>.",
+   "<b>Império Árabe-Islâmico.</b> No início do século VII, na península Arábica, surgia a figura de um profeta chamado <span class='destaque'>Maomé</span>, que difundia uma religião monoteísta chamada de <b>Islã</b>. Essa crença tem como base <b>cinco pilares</b>: orar cinco vezes ao dia em direção a Meca; jejuar no mês sagrado do Ramadã; dar esmolas aos mais pobres; visitar a cidade de Meca ao menos uma vez na vida; e recitar um credo que reconhece a existência de um único deus, Alá.",
+   "Na época, os povos da península Arábica eram <b>politeístas</b> e tinham em Meca um centro religioso, especialmente por causa da adoração de uma pedra sagrada guardada em um templo de formato cúbico chamado <span class='destaque'>Caaba</span>. Devido às suas pregações públicas, que desafiavam a religiosidade da época, Maomé foi <b>expulso de Meca</b> e buscou refúgio na cidade de <b>Medina</b>. Depois do exílio, organizou um exército, retornou a Meca, dominou a cidade e removeu os ídolos da Caaba, reafirmando a crença monoteísta e tornando a Caaba um símbolo do Islã.",
+   "O Islã rapidamente ganhou fiéis e passou a expandir seu território, dando origem ao Império Árabe-Islâmico. Os povos dominados podiam escolher entre manter suas crenças ou converter-se; quem se convertia obtinha vantagens, como a isenção de alguns impostos. Após a morte de Maomé, em <b>632</b>, surgiram duas correntes: os <b>sunitas</b> e os <b>xiitas</b>. Em meio a disputas, o império foi dividido em diversos <b>califados</b>, comandados pelos <b>califas</b>, líderes religiosos e políticos que deram continuidade à conquista territorial. O <b>comércio</b> era a principal atividade econômica, e a cultura árabe-islâmica foi marcada pela <b>tolerância religiosa</b>; filosofia, medicina, matemática, arquitetura, literatura, astronomia, geografia e química são legados desse império.",
+   "<div class='olhar'><b>Caixas MAIS! e glossário (pp. 302–303):</b> no século VII a.C. os gregos fundaram a cidade de <b>Bizâncio</b>; em 330 d.C. o imperador Constantino a rebatizou de <b>Constantinopla</b>; hoje ela se chama <b>Istambul</b> e é a maior cidade da Turquia. A migração de Maomé para Medina é conhecida como <b>Hégira</b> e ocorreu em <b>622</b> — no calendário muçulmano, esse evento é considerado o primeiro ano. <b>Sunitas:</b> defendem a sucessão de Maomé por qualquer muçulmano e seguem o Alcorão e a Suna. <b>Xiitas:</b> defendem a sucessão exclusivamente por seus descendentes e seguem apenas o Alcorão.<br><b>Entre Mapas (p. 304):</b> no mapa “Predomínio religioso no século XI” aparecem três áreas — <b>cristãos católicos</b>, <b>cristãos ortodoxos</b> e <b>muçulmanos</b>.</div>"
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "O que foi o Cisma do Oriente e qual foi o seu resultado?",
+    "modelo": "Foi a ruptura de 1054, causada pela tensão entre o papa, no ocidente, e o imperador bizantino. O resultado foi a divisão do mundo cristão em duas igrejas: a Igreja católica romana, liderada pelo papa, e a Igreja ortodoxa, liderada pelo imperador bizantino.",
+    "chk": [
+     "Disse o ano (1054) e quem estava em conflito?",
+     "Disse que o cristianismo se dividiu em Igreja católica romana e Igreja ortodoxa?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique por que Constantinopla ficou tão rica, usando a posição dela no mapa.",
+    "modelo": "Porque ficava no caminho entre o norte da África, a Europa e a Ásia, sendo passagem obrigatória para as rotas de comerciantes. Por ali passavam perfumes, sedas e porcelanas do Oriente, e o império ainda cobrava impostos sobre esse movimento.",
+    "chk": [
+     "Liguei a riqueza à posição de passagem entre África, Europa e Ásia?",
+     "Citei o comércio de produtos do Oriente ou a cobrança de impostos?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Um colega diz que “sunitas e xiitas se dividiram por causa de dinheiro”. Corrija-o usando o que você leu.",
+    "modelo": "Não foi por dinheiro. A divisão apareceu depois da morte de Maomé, em 632, e é sobre quem poderia sucedê-lo: os sunitas aceitam qualquer muçulmano como sucessor, e os xiitas defendem que só os descendentes dele podem suceder.",
+    "chk": [
+     "Disse que a divisão é sobre a sucessão de Maomé, depois da morte dele?",
+     "Expliquei a posição de cada grupo (qualquer muçulmano × só descendentes)?"
+    ]
+   }
+  ]
+ },
+ {
+  "porto": "Elo 10 · A corrente se parte · Slides da aula + esquema da p. 296",
+  "emoji": "💥",
+  "u": "",
+  "titulo": "A decadência do feudalismo",
+  "texto": [
+   "<div class='olhar'><b>De onde vem este elo:</b> o conteúdo deste bloco está nos <b>slides enviados pela escola</b> para esta prova e no <b>esquema da p. 296 do livro</b>, que apresenta a Baixa Idade Média. Os outros nove elos saíram das pp. 296 a 304.</div>",
+   "O feudalismo <span class='destaque'>enfraqueceu entre os séculos XIV e XV</span>, por causa de crises <b>econômicas, sociais, políticas e culturais</b>. Veja as seis engrenagens desse processo:",
+   "<ul><li><b>1. Crises no campo:</b> quedas na produção agrícola; guerras, fome e más colheitas; redução da população camponesa.</li><li><b>2. Peste Negra:</b> entre <b>1347 e 1351</b>; matou milhões de pessoas; enfraqueceu a economia e o sistema feudal.</li><li><b>3. Crescimento das cidades e do comércio:</b> surgem os centros urbanos e se fortalece a <b>burguesia</b> (comerciantes e artesãos).</li><li><b>4. Fortalecimento das monarquias:</b> os reis ampliam seu poder e <b>reduzem a autonomia dos senhores feudais</b>.</li><li><b>5. Mudanças culturais:</b> o <b>Renascimento</b>, com mais valorização do ser humano, e novas ideias políticas, econômicas e científicas.</li><li><b>6. Resultado:</b> o sistema feudal enfraqueceu e surgiram novas formas de organização social e econômica.</li></ul>",
+   "Repare como isso bate com o <b>esquema da p. 296</b>: na <span class='destaque'>Baixa Idade Média (séculos XI ao XV)</span>, o livro lista justamente as <b>Cruzadas</b>, o <b>Renascimento Comercial e Urbano</b>, a <b>redução do poder dos senhores feudais</b>, o <b>comércio com o Oriente</b> e o <b>Renascimento Cultural e Científico</b>. São os mesmos movimentos, vistos por outro ângulo.",
+   "A conclusão dos slides resume tudo: <b>a decadência do feudalismo abriu caminho para o mundo moderno</b>."
+  ],
+  "perguntas": [
+   {
+    "tag": "conc",
+    "q": "Cite três causas da decadência do feudalismo e explique uma delas com as suas palavras.",
+    "modelo": "Três causas: as crises no campo, a Peste Negra e o crescimento das cidades e do comércio. A Peste Negra, por exemplo, aconteceu entre 1347 e 1351, matou milhões de pessoas e enfraqueceu a economia e o próprio sistema feudal.",
+    "chk": [
+     "Citei três causas diferentes?",
+     "Expliquei uma delas com as minhas palavras?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Explique como o crescimento das cidades ajudou a enfraquecer o poder dos senhores feudais.",
+    "modelo": "Com as cidades crescendo e o comércio voltando, ganhou força um novo grupo: a burguesia, de comerciantes e artesãos. A riqueza e a vida deixaram de girar só em torno da terra do senhor feudal, e os reis, apoiados nesse movimento, ampliaram seu poder e reduziram a autonomia dos senhores.",
+    "chk": [
+     "Citei o surgimento ou fortalecimento da burguesia?",
+     "Liguei isso à perda de poder dos senhores feudais (ou ao fortalecimento dos reis)?"
+    ]
+   },
+   {
+    "tag": "apl",
+    "q": "Se você tivesse de explicar em uma ou duas frases, para um aluno do 5º ano, o que a Peste Negra tem a ver com o fim do feudalismo, o que diria?",
+    "modelo": "Diria que a Peste Negra matou milhões de pessoas entre 1347 e 1351. Com muito menos gente para trabalhar no campo, a produção e a economia dos feudos desabaram, e o sistema feudal, que dependia desse trabalho, foi ficando fraco.",
+    "chk": [
+     "Usei linguagem simples e curta, como pede a pergunta?",
+     "Liguei a morte de muita gente à queda da produção e ao enfraquecimento do feudalismo?"
+    ]
+   }
+  ]
+ }
+];
+
+/* ====== PLACAR ====== */
+function renderPlacar(){
+  var c=document.getElementById('pts'); var h=''; var feitos=0;
+  BLOCOS.forEach(function(bl,i){ var b=estado.blocos[i]||{}; var cls='pt'+(b.conferido?' feito':(b.aberto||i===0?' aberto':'')); if(b.conferido) feitos++; h+='<div class="'+cls+'" onclick="irBloco('+i+')">'+(b.conferido?'✔':String(i+1))+'<small>Elo '+(i+1)+'</small></div>'; });
+  c.innerHTML=h;
+  document.getElementById('placar-total').textContent=(feitos<10?'0':'')+feitos+' / '+BLOCOS.length;
+}
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+  renderPlacar();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu os '+BLOCOS.length+' elos e respondeu a autoavaliação. Agora teste o que aprendeu na Prova de Fidelidade.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir os '+p.total+' elos (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado — Português 7º, 08/10/2026; mesmo motor dos kits 6º SJ) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' '); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco '+bloco.u+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="porto">'+bloco.porto+'</div><h3>'+bloco.emoji+' '+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Este elo abre quando você conferir o elo anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0||p.indexOf('<ul')===0? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label for="ta'+i+'_'+j+'">'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')"></textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir este elo</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+    bloco.perguntas.forEach(function(p,j){ var ta=document.getElementById('ta'+i+'_'+j); if(ta) ta.value=estPerg(i,j).resp||''; });
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+  renderPlacar();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  if(b.conferido){ btn.disabled=true; return; }
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned || ep.resp===ep.tentou){
+        if(!ep.warned){ ep.warned=true; ep.tentou=ep.resp; }
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--laranja)">✍️ Reescreva (mude) as respostas marcadas em amarelo e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#8fe0b4">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Elo conferido'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">➡️ Ir para o próximo elo</a>';
+  }
+}
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3bc">🔁 Este elo tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--laranja)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#8fe0b4">⛓️ Elo forjado! Tudo conferido neste elo.</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Elo '+(i+1)+' ('+bloco.titulo+'): pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Elo '+(i+1)+' ('+bloco.titulo+'): revisar — "'+pt+'"'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Elos conferidos:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como "Não" na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3bc">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#8fe0b4">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_elos-do-juramento.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); if(!estado.blocos) estado.blocos={}; salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (Se a leitura já foi concluída, o Quiz continua destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado · Juramento Final · Elos do Juramento · História 6º</title>
+<style>
+  :root{
+    --fundo:#0f1117; --fundo2:#191d27; --aco:#2c3242; --aco2:#3f4659;
+    --laranja:#e8b23c; --azul:#6aa6e0; --verde:#4ed08a; --vermelho:#f0695f;
+    --amarelo:#f5cd5c; --texto:#e7ebf3; --cinza:#98a1b4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;
+    background:radial-gradient(1100px 520px at 50% -10%,#242b3f,#0f1117 62%),var(--fundo);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#1b2131,#121622 52%,#2b2114);padding:28px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.55);border-bottom:4px solid var(--laranja);position:relative;overflow:hidden}
+  header:before{content:"";position:absolute;left:50%;top:50%;width:210px;height:210px;margin:-105px 0 0 -105px;border:4px solid rgba(232,178,60,.10);border-radius:50%}
+  header:after{content:"";position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border:4px solid rgba(232,178,60,.08);border-radius:50%}
+  header .selo{font-size:.76rem;letter-spacing:2px;color:#e8cf9a;text-transform:uppercase;position:relative}
+  header h1{font-size:1.6rem;margin:7px 0 3px;position:relative}
+  header p{color:#ccd4e2;font-size:.93rem;position:relative}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .ordem{text-align:center;font-weight:bold;margin:10px 0;font-size:.95rem;color:#fff}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .mini:hover{background:#242a39}
+  /* ---- placar / corrente de elos ---- */
+  .placar{background:#0a0c12;border:2px solid #272d3c;border-radius:16px;padding:14px;margin-bottom:18px;text-align:center}
+  .placar h3{color:var(--amarelo);font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .placar p.sub{color:var(--cinza);font-size:.8rem;margin-bottom:10px}
+  .placar .pts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .placar .pt{width:58px;padding:6px 0;border-radius:14px;background:#141924;border:2px solid var(--aco2);cursor:pointer;font-family:'Courier New',monospace;font-weight:bold;color:#5a6378}
+  .placar .pt small{display:block;font-family:'Segoe UI',sans-serif;font-weight:normal;font-size:.62rem}
+  .placar .pt.aberto{color:var(--laranja);border-color:var(--laranja)}
+  .placar .pt.feito{color:#07241a;background:var(--verde);border-color:var(--verde);box-shadow:0 0 10px rgba(78,208,138,.45)}
+  .placar .total{font-family:'Courier New',monospace;font-size:1.6rem;color:var(--laranja);margin-top:8px}
+  /* ---- blocos ---- */
+  .bloco{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#20263a,#171b26);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--laranja);color:#2a1d00;font-weight:bold;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.gb .bloco-cab .num{background:var(--azul);color:#06203a}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:6px}
+  .texto .destaque{color:var(--laranja);font-weight:bold}
+  .bloco.gb .texto .destaque{color:var(--azul)}
+  .olhar{background:#21283a;border-left:3px solid var(--amarelo);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--amarelo)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#141925;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#1d3550;color:#bcdcf7}
+  .tag.apl{background:#1f3f2d;color:#aee3c3}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#0b0e15;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3a12;border:1px solid var(--laranja);color:#ffeccb}
+  .aviso.vermelho{display:block;background:#471a1c;border:1px solid var(--vermelho);color:#ffd1cd}
+  .modelo{margin-top:10px;padding:10px 12px;background:#12301f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe3b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--azul);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1a20;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb9b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--azul);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#222838}
+  .revisar{background:#3a2d12;border:2px solid var(--laranja);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--laranja);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--azul);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe3b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- quiz / simulado ---- */
+  .codigo{background:linear-gradient(120deg,#153328,#1b4a35);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe3b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--azul),var(--laranja));width:0;transition:width .3s}
+  .q{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--azul);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema,.q .tipo{float:right;font-size:.7rem;color:var(--cinza);background:var(--fundo);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q .tipo.rom{color:#f3d58a;border-color:var(--laranja)}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .afirm{background:#141925;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}
+  .afirm.no{border-left-color:#777;color:#aaa}
+  .alt{display:block;background:#141925;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--laranja)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--laranja);background:#2a2314}
+  .alt.certa{border-color:var(--verde);background:#12301f}
+  .alt.errada{border-color:#4a4a55;background:#1b1d25;color:#a7a7b2}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1a20}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#0f131d;border-left:3px solid var(--laranja);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--laranja);color:#2a1d00;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .gab{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  /* ---- resumo ---- */
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .sec .pill.gb{background:var(--azul);color:#06203a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .card{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--laranja)}
+  .card.gb{border-top-color:var(--azul)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--laranja)}
+  .card.gb b{color:var(--azul)}
+  .grande{background:linear-gradient(120deg,#20263a,#171b26);border:2px solid var(--laranja);border-radius:16px;padding:16px;font-size:1.02rem}
+  .grande b{color:var(--amarelo)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .pegbox{background:#3a1a20;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .pegbox b{color:#ffb9b3}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:185px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#242b3f,#171b26);border:1px solid var(--aco2);font-weight:bold;font-size:1rem}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#12301f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#222838}
+  .duelo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .duelo .lado{background:#141925;border-radius:12px;padding:12px;border:2px solid var(--aco2);text-align:center}
+  .duelo .lado.l1{border-color:var(--azul)}
+  .duelo .lado.l2{border-color:var(--laranja)}
+  .duelo .lado .ic{font-size:2rem}
+  .duelo h4{margin:4px 0}
+  .duelo.tres{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:600px){.duelo,.duelo.tres{grid-template-columns:1fr}}
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .numeros div{background:#0a0c12;border:1px solid #272d3c;border-radius:12px;padding:10px;text-align:center;font-size:.82rem}
+  .numeros div span{display:block;font-family:'Courier New',monospace;font-size:1.35rem;font-weight:bold;color:var(--laranja)}
+  .linha{border-left:3px solid var(--laranja);margin:10px 0 10px 10px;padding-left:16px}
+  .linha .ev{position:relative;margin-bottom:12px}
+  .linha .ev:before{content:"";position:absolute;left:-23px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 3px rgba(232,178,60,.2)}
+  .linha .ev b{color:var(--amarelo);display:block;font-family:'Courier New',monospace}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--laranja)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe3b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .fim a,.fim a.btn{display:inline-block;margin:6px;background:var(--azul);color:#06203a;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- index ---- */
+  .selo-pais{display:none;background:#153328;border:1px solid var(--verde);color:#8fe3b4;border-radius:10px;padding:10px 14px;margin:12px 0;text-align:center;font-weight:bold}
+  .selo-pais.show{display:block}
+  .selo-pais button{margin-left:10px;background:transparent;border:1px solid var(--verde);color:#8fe3b4;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit}
+  .trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+  .trilha .card{position:relative;background:var(--fundo2);border:1px solid var(--aco);border-top:1px solid var(--aco);border-radius:16px;padding:16px;text-decoration:none;color:var(--texto);display:block;transition:transform .15s,box-shadow .15s}
+  .trilha .card .passo{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)}
+  .trilha .card .emoji{font-size:2rem;margin:4px 0}
+  .trilha .card h3{font-size:1.05rem;margin-bottom:6px}
+  .trilha .card p{font-size:.85rem;color:#c3cada}
+  .trilha .card .estado{margin-top:10px;font-size:.8rem;font-weight:bold;padding:6px 8px;border-radius:8px}
+  .trilha .card.aberto{border-color:var(--laranja)}
+  .trilha .card.aberto:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(232,178,60,.22)}
+  .trilha .card.aberto .estado{background:#2a2314;color:var(--laranja)}
+  .trilha .card.novo{animation:brilho 1.6s ease-in-out 3;border-color:var(--laranja)}
+  @keyframes brilho{0%,100%{box-shadow:0 0 0 rgba(232,178,60,0)}50%{box-shadow:0 0 22px rgba(232,178,60,.6)}}
+  .trilha .card.novo .estado{background:#3a2d12;color:var(--laranja)}
+  .trilha .card.feito{border-color:var(--verde)}
+  .trilha .card.feito .estado{background:#12301f;color:#8fe3b4}
+  .trilha .card.trancado{opacity:.55;filter:grayscale(.6);pointer-events:none;cursor:not-allowed}
+  .trilha .card.trancado .estado{background:#1d212c;color:var(--cinza)}
+  .trilha .card .cadeado{position:absolute;top:10px;right:12px;font-size:1.3rem;padding:0}
+  .como{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .como h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .como ol{margin-left:20px}
+  .como li{margin-bottom:6px}
+  .cai{background:#21283a;border-left:4px solid var(--amarelo);border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;font-size:.93rem}
+  .cai h2{color:var(--amarelo);font-size:1.05rem;margin-bottom:6px}
+  .cai p{margin-bottom:6px}
+  .rel{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0}
+  .rel h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .rel input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:170px;text-transform:uppercase}
+  .rel button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px;cursor:pointer;font-family:inherit}
+  .rel .out{margin-top:12px;font-size:.9rem}
+  .rel .bloco{background:#141925;border:1px solid var(--aco);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .rel .bloco b{color:var(--laranja)}
+  .rel .liberar{margin-top:10px;background:var(--verde);color:#04231a}
+  .rel .perigo{background:#471a1c;color:#ffd1cd;border:1px solid var(--vermelho)}
+  .dica{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.9rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:16px 0}
+  .dica b{color:#7a4a00}
+  /* ---- modais ---- */
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,8,14,.92);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--laranja);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--laranja);color:#2a1d00;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none;font-family:inherit;cursor:pointer}
+  .modal button.sec,.modal .mini{background:transparent;border:1px solid var(--aco2);color:var(--texto);margin-left:8px}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Elos do Juramento · História 6º ano · Colégio São José</div>
+  <h1>📝 Simulado — Juramento Final</h1>
+  <p>28 questões no estilo da prova · 25 de múltipla escolha e 3 de números romanos · Código SIM</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a class="on" href="simulado.html">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="codigo" id="codigo"><div>Seu código de liberação</div><div class="cod" id="cod"></div><div id="codtxt"></div></div>
+
+  <div class="intro">
+    <h2>📝 Valendo o Juramento Final!</h2>
+    <p>Chegou o dia da cerimônia. Faça como se fosse a prova de verdade: <b>28 questões</b>, todas obrigatórias. São <b>25 de múltipla escolha</b> e <b>3 de números romanos</b> — nessas, leia as afirmativas I, II, III e IV e escolha a alternativa correta. Depois de enviar, as respostas travam e aparece o código <b>SIM</b>, que abre o gabarito comentado.</p>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div class="progresso"><div id="barra"></div></div>
+  <div id="questoes"></div>
+  <button class="enviar" id="btn-enviar" onclick="enviar()" disabled>📨 Enviar simulado (responda todas)</button>
+
+  <div class="gab" id="gab">
+    <b>🔑 Gabarito comentado:</b> digite o código SIM que apareceu no topo.<br>
+    <input id="gab-in" placeholder="SIM-XX-YY"><button onclick="abrirGab()">Ver gabarito</button>
+    <div class="msg" id="gab-msg"></div>
+  </div>
+
+  <div class="fim" id="fim" style="display:none">
+    <h3>🏆 Corrente completa!</h3>
+    <p>Você forjou os 10 elos, passou na Prova de Fidelidade, leu o Pergaminho e cumpriu o Juramento Final. Agora tudo fica aberto para revisar quantas vezes quiser até a prova.</p>
+    <a href="index.html">🏠 Voltar ao início</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. ⛓️ Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Simulado, leia o Resumo até o fim.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='elos_do_juramento';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('simulado')) return true;
+  var txt='Para abrir o Simulado, leia o Resumo até o fim e clique em "Li o resumo até o fim".';
+  if(!etapaConcluida('quiz')) txt='Para abrir o Simulado, envie o Quiz e depois leia o Resumo até o fim.';
+  if(!etapaConcluida('leitura')) txt='Para abrir o Simulado, conclua a Leitura Guiada, envie o Quiz e leia o Resumo até o fim.';
+  document.getElementById('lock-txt').textContent=txt;
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== QUESTÕES (conteúdo do livro de História 6º, pp. 296–304, e dos slides da aula) — a correta é guardada pelo id ====== */
+var Q=[
+ {
+  "tipo": "mc",
+  "p": "A chegada de povos bárbaros ao Ocidente, durante a Alta Idade Média, contribuiu para um processo de:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "ruralização e fragmentação do poder político.",
+    "ok": true,
+    "e": "Com os conflitos, as pessoas buscaram o campo e o poder se espalhou entre muitos senhores (p. 296)."
+   },
+   {
+    "id": "b",
+    "t": "urbanização e centralização do poder nos reis.",
+    "e": "Isso só volta a acontecer na Baixa Idade Média, na decadência do feudalismo."
+   },
+   {
+    "id": "c",
+    "t": "crescimento do comércio de longa distância na Europa.",
+    "e": "O comércio declinou nesse momento."
+   },
+   {
+    "id": "d",
+    "t": "unificação de toda a Europa sob um único império.",
+    "e": "Ocorreu o contrário: a Europa se fragmentou em reinos bárbaros."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Entre os reinos bárbaros formados na Europa ocidental, o livro cita, na península Ibérica, os reinos:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "dos Suevos e dos Visigodos.",
+    "ok": true,
+    "e": "Está na p. 296."
+   },
+   {
+    "id": "b",
+    "t": "Franco e dos Burgúndios.",
+    "e": "Esses ficavam na parte central da Europa."
+   },
+   {
+    "id": "c",
+    "t": "Anglo-saxão e dos Ostrogodos.",
+    "e": "O Anglo-saxão ficava ao norte e o dos Ostrogodos, na península Itálica."
+   },
+   {
+    "id": "d",
+    "t": "Bizantino e Carolíngio.",
+    "e": "O Bizantino é oriental; o Carolíngio é posterior e nasce do Reino Franco."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O rei Clóvis, que se converteu ao cristianismo em 481 d.C., pertencia à dinastia:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "merovíngia, nome que deriva de Meroveu.",
+    "ok": true,
+    "e": "Clóvis supostamente descendia desse líder e guerreiro franco (p. 297)."
+   },
+   {
+    "id": "b",
+    "t": "carolíngia, nome que deriva de Carlos Magno.",
+    "e": "A dinastia carolíngia vem depois, com Carlos Magno em 768."
+   },
+   {
+    "id": "c",
+    "t": "otomana, nome que deriva dos turcos.",
+    "e": "Os turco-otomanos aparecem só em 1453, no Oriente."
+   },
+   {
+    "id": "d",
+    "t": "justiniana, nome que deriva de Justiniano.",
+    "e": "Justiniano I foi imperador bizantino, não rei franco."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em 768, Carlos Magno assumiu o controle do Reino Franco. Entre as ações dele estão:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "expandir o território, transformando o reino em Império Carolíngio, e reafirmar a aliança com a Igreja católica.",
+    "ok": true,
+    "e": "Ele ainda aprimorou as práticas do comitatus e do colonato (p. 297)."
+   },
+   {
+    "id": "b",
+    "t": "romper com a Igreja católica e perseguir o clero.",
+    "e": "Ele fez o oposto: reforçou a aliança com a Igreja."
+   },
+   {
+    "id": "c",
+    "t": "abandonar as práticas do comitatus e do colonato.",
+    "e": "Ele as aprimorou, e elas viraram base do feudalismo."
+   },
+   {
+    "id": "d",
+    "t": "transferir a capital do reino para Constantinopla.",
+    "e": "Constantinopla era a capital bizantina, de outro império."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O que aconteceu com o Império Carolíngio depois da morte de Carlos Magno?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Seus sucessores não conseguiram manter o domínio e o império se fragmentou em vários reinos.",
+    "ok": true,
+    "e": "Está no fim da p. 297."
+   },
+   {
+    "id": "b",
+    "t": "Ele se manteve unido até o século XV.",
+    "e": "O livro diz que o império se fragmentou."
+   },
+   {
+    "id": "c",
+    "t": "Ele foi incorporado ao Império Bizantino.",
+    "e": "Não houve essa incorporação."
+   },
+   {
+    "id": "d",
+    "t": "Ele se transformou no Império Árabe-Islâmico.",
+    "e": "Esse império nasce na península Arábica, com Maomé."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Leia: “O suserano concedia terras e benefícios a seu vassalo; este, em troca, jurava-lhe fidelidade e apoio.” Esse trecho descreve:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "a vassalagem, baseada em compromissos mútuos.",
+    "ok": true,
+    "e": "Essa relação se estendeu dos monarcas aos membros da nobreza (p. 298)."
+   },
+   {
+    "id": "b",
+    "t": "a servidão, relação entre o servo e o senhor feudal.",
+    "e": "Na servidão o camponês paga taxas e recebe proteção e o direito de usar a terra."
+   },
+   {
+    "id": "c",
+    "t": "o cesaropapismo, modelo de governança bizantino.",
+    "e": "Cesaropapismo concentra poder político e religioso no imperador."
+   },
+   {
+    "id": "d",
+    "t": "o colonato, prática dos grandes proprietários romanos.",
+    "e": "No colonato, camponeses arrendavam terras e davam bens e serviços."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Com o passar das gerações, o juramento de fidelidade do vassalo ao suserano virou uma cerimônia com rituais e juramentos específicos, chamada de:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "homenagem.",
+    "ok": true,
+    "e": "Está na p. 298."
+   },
+   {
+    "id": "b",
+    "t": "excomunhão.",
+    "e": "Excomunhão era uma punição aplicada pela Igreja."
+   },
+   {
+    "id": "c",
+    "t": "corveia.",
+    "e": "Corveia é o trabalho obrigatório do servo no manso senhorial."
+   },
+   {
+    "id": "d",
+    "t": "Hégira.",
+    "e": "Hégira é a migração de Maomé para Medina, em 622."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "A divisão sucessiva dos bens e da autoridade entre suseranos e vassalos levou, na Europa Ocidental, à:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "descentralização do poder político.",
+    "ok": true,
+    "e": "Cada nobre passou a mandar em seu pedaço (p. 298)."
+   },
+   {
+    "id": "b",
+    "t": "centralização do poder nas mãos do papa.",
+    "e": "A Igreja tinha enorme influência, mas o poder político ficou fragmentado."
+   },
+   {
+    "id": "c",
+    "t": "criação de um parlamento com representantes dos três estamentos.",
+    "e": "O capítulo não trata disso."
+   },
+   {
+    "id": "d",
+    "t": "eliminação da hierarquia entre os nobres.",
+    "e": "A hierarquia feudal continuou existindo, com vários níveis."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O termo “senhorio” é utilizado para se referir:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "às terras e ao direito de cobrar taxas das pessoas que habitavam essas terras.",
+    "ok": true,
+    "e": "Por isso o senhorio não é só o chão: é também um direito (p. 298)."
+   },
+   {
+    "id": "b",
+    "t": "apenas ao castelo onde morava o senhor feudal.",
+    "e": "O castelo é só um dos espaços do feudo."
+   },
+   {
+    "id": "c",
+    "t": "ao conjunto de leis romanas preservadas na Idade Média.",
+    "e": "Isso é o Código Justiniano."
+   },
+   {
+    "id": "d",
+    "t": "ao grupo de servos que vivia no manso servil.",
+    "e": "Senhorio se refere às terras e ao direito de cobrar taxas, não ao grupo de pessoas."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "No manso senhorial:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "tudo o que era produzido pelos servos e vilões se tornava propriedade do senhor feudal.",
+    "ok": true,
+    "e": "Definição da p. 298."
+   },
+   {
+    "id": "b",
+    "t": "os servos cultivavam pequenos lotes para o próprio sustento.",
+    "e": "Isso é o manso servil."
+   },
+   {
+    "id": "c",
+    "t": "ficavam as florestas e pastagens de uso comum.",
+    "e": "Essas são as terras comunais."
+   },
+   {
+    "id": "d",
+    "t": "somente a Igreja podia plantar e colher.",
+    "e": "O livro não afirma nada parecido."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "As terras comunais de um senhorio eram:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "florestas, pastagens e outras áreas não cultivadas, utilizadas tanto por servos como por senhores feudais.",
+    "ok": true,
+    "e": "Definição da p. 298."
+   },
+   {
+    "id": "b",
+    "t": "lotes cultivados apenas pelos servos, para o próprio sustento.",
+    "e": "Isso é o manso servil."
+   },
+   {
+    "id": "c",
+    "t": "áreas de uso exclusivo do senhor feudal e de sua família.",
+    "e": "O livro diz que servos também as utilizavam."
+   },
+   {
+    "id": "d",
+    "t": "terras doadas à Igreja pela nobreza.",
+    "e": "As doações existiram, mas não definem as terras comunais."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "“Trabalhar duas a três vezes por semana no manso senhorial.” Essa obrigação do servo era chamada de:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "corveia.",
+    "ok": true,
+    "e": "Corveia é trabalho (p. 299)."
+   },
+   {
+    "id": "b",
+    "t": "talha.",
+    "e": "Talha é entregar parte da produção do manso servil."
+   },
+   {
+    "id": "c",
+    "t": "banalidade.",
+    "e": "Banalidade é a taxa para usar moinho, forno e outros equipamentos."
+   },
+   {
+    "id": "d",
+    "t": "dízimo.",
+    "e": "Dízimo é 10% da produção mensal, cobrado pela Igreja."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Um camponês precisa assar o pão no forno do senhor feudal e, para isso, paga uma taxa. Essa cobrança é a:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "banalidade.",
+    "ok": true,
+    "e": "Pagamento para usar o moinho, o forno e outros equipamentos (p. 299)."
+   },
+   {
+    "id": "b",
+    "t": "corveia.",
+    "e": "Corveia é trabalho no manso senhorial."
+   },
+   {
+    "id": "c",
+    "t": "talha.",
+    "e": "Talha é parte da produção do manso servil entregue ao senhor."
+   },
+   {
+    "id": "d",
+    "t": "homenagem.",
+    "e": "Homenagem é a cerimônia de juramento entre vassalo e suserano."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Na relação de servidão, o que o servo recebia em troca das taxas que pagava ao senhor feudal?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Proteção e o direito de utilizar as terras e os instrumentos necessários para mantê-las.",
+    "ok": true,
+    "e": "É o que diz a p. 299."
+   },
+   {
+    "id": "b",
+    "t": "Um salário mensal pago em moedas de prata.",
+    "e": "A circulação de moedas era escassa e não havia salário."
+   },
+   {
+    "id": "c",
+    "t": "A propriedade definitiva do manso servil.",
+    "e": "A terra continuava sob domínio do senhor feudal."
+   },
+   {
+    "id": "d",
+    "t": "O direito de participar das decisões políticas do feudo.",
+    "e": "O poder político era de clero e nobreza."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Por que os servos enfrentavam o problema da fome, mesmo trabalhando a terra o tempo todo?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Porque as técnicas e ferramentas davam pouca produtividade, o solo se esgotava e secas ou chuvas intensas derrubavam a produção.",
+    "ok": true,
+    "e": "É o quadro descrito na p. 299."
+   },
+   {
+    "id": "b",
+    "t": "Porque eles se recusavam a plantar cereais como trigo e centeio.",
+    "e": "Esses eram justamente os cereais mais plantados."
+   },
+   {
+    "id": "c",
+    "t": "Porque toda a produção do manso servil ia para a Igreja.",
+    "e": "A Igreja recebia o dízimo, 10% da produção mensal."
+   },
+   {
+    "id": "d",
+    "t": "Porque os feudos compravam toda a comida de outras regiões.",
+    "e": "Os feudos buscavam a autossuficiência."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Em muitas feiras medievais, a prática do escambo tornou-se comum. Isso aconteceu porque:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "a circulação de moedas era escassa e algumas propriedades feudais cunhavam as próprias moedas.",
+    "ok": true,
+    "e": "O declínio do comércio e a fragmentação política explicam a troca de produtos (p. 299)."
+   },
+   {
+    "id": "b",
+    "t": "o comércio havia desaparecido completamente na Europa.",
+    "e": "O livro diz que ele não desapareceu por completo."
+   },
+   {
+    "id": "c",
+    "t": "a Igreja proibia o uso de qualquer moeda.",
+    "e": "Não há essa informação no capítulo."
+   },
+   {
+    "id": "d",
+    "t": "os feudos produziam apenas o que não conseguiam consumir.",
+    "e": "Eles buscavam produzir o necessário para a própria sobrevivência."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Sobre o clero na sociedade feudal, é correto afirmar que:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "o alto clero (papa, bispos e abades) era formado em geral por nobres, e o baixo clero (párocos e monges), em sua maioria, por homens de origem humilde.",
+    "ok": true,
+    "e": "Está na p. 300."
+   },
+   {
+    "id": "b",
+    "t": "o alto clero vinha das famílias camponesas e o baixo clero, da nobreza.",
+    "e": "Está invertido."
+   },
+   {
+    "id": "c",
+    "t": "todos os membros do clero eram camponeses.",
+    "e": "O livro distingue claramente alto e baixo clero."
+   },
+   {
+    "id": "d",
+    "t": "o clero não participava do poder político.",
+    "e": "Clero e nobreza exerciam juntos o poder político, econômico e cultural."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Por que havia pouca mobilidade social na sociedade feudal?",
+  "alts": [
+   {
+    "id": "a",
+    "t": "Porque o acesso a terras e aos benefícios era hereditário.",
+    "ok": true,
+    "e": "E a Igreja difundia a ideia de que Deus predeterminara a função de cada um (p. 300)."
+   },
+   {
+    "id": "b",
+    "t": "Porque havia uma lei que proibia qualquer mudança de estamento.",
+    "e": "O livro fala em hereditariedade e costume, não nessa lei."
+   },
+   {
+    "id": "c",
+    "t": "Porque todos os camponeses eram escravizados.",
+    "e": "Os escravizados eram um número reduzido; servos e vilões não eram escravizados."
+   },
+   {
+    "id": "d",
+    "t": "Porque não existiam diferenças sociais entre os grupos.",
+    "e": "A sociedade era, ao contrário, muito hierarquizada."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O xadrez, popular entre nobres e clero no período medieval, foi levado à Europa:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "pelos árabes, sendo considerado um jogo de estratégia.",
+    "ok": true,
+    "e": "Está na p. 300."
+   },
+   {
+    "id": "b",
+    "t": "pelos jograis, artistas ambulantes da época.",
+    "e": "Os jograis faziam música, dança, acrobacias e malabarismos."
+   },
+   {
+    "id": "c",
+    "t": "pelos turco-otomanos, depois de 1453.",
+    "e": "O xadrez já era popular bem antes disso."
+   },
+   {
+    "id": "d",
+    "t": "pelos monges copistas do Império Carolíngio.",
+    "e": "Eles copiavam obras da Antiguidade Clássica, não levaram o xadrez."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "As manifestações contrárias às ideias e aos dogmas da Igreja poderiam ser punidas com:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "a excomunhão e, em alguns casos, até com a morte.",
+    "ok": true,
+    "e": "A vigilância da Igreja sobre os costumes era constante (p. 301)."
+   },
+   {
+    "id": "b",
+    "t": "o pagamento de uma banalidade maior.",
+    "e": "Banalidade é taxa para usar equipamentos do senhor feudal."
+   },
+   {
+    "id": "c",
+    "t": "a perda do direito de participar das Cruzadas.",
+    "e": "O capítulo não apresenta essa punição."
+   },
+   {
+    "id": "d",
+    "t": "a obrigação de aprender Gramática, Lógica e Retórica.",
+    "e": "Esse ensino era usado para formar o clero no Império Carolíngio."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O imperador bizantino Justiniano I, que assumiu o poder em 527, foi o responsável por:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "promover a elaboração do Código Justiniano, que compilava as leis romanas.",
+    "ok": true,
+    "e": "Ele também expandiu o território bizantino (p. 302)."
+   },
+   {
+    "id": "b",
+    "t": "criar a religião islâmica na península Arábica.",
+    "e": "Quem difundiu o Islã foi o profeta Maomé, no século VII."
+   },
+   {
+    "id": "c",
+    "t": "coroar Carlos Magno como imperador no ano 800.",
+    "e": "Quem coroou foi o papa Leão III."
+   },
+   {
+    "id": "d",
+    "t": "conquistar Constantinopla em 1453.",
+    "e": "Quem conquistou a cidade foram os turco-otomanos, séculos depois."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O modelo de governança bizantino chamado cesaropapismo caracterizava-se por:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "concentrar a liderança política e religiosa na figura do imperador.",
+    "ok": true,
+    "e": "Foi uma das causas da tensão que levou ao Cisma do Oriente (p. 302)."
+   },
+   {
+    "id": "b",
+    "t": "dividir o poder entre o papa e os senhores feudais.",
+    "e": "Esse arranjo é o da Europa ocidental feudal."
+   },
+   {
+    "id": "c",
+    "t": "entregar o governo aos califas.",
+    "e": "Os califas comandavam os califados do Império Árabe-Islâmico."
+   },
+   {
+    "id": "d",
+    "t": "eleger o imperador numa assembleia de nobres.",
+    "e": "O capítulo não descreve nada parecido."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "Sobre o Islã e o Império Árabe-Islâmico, é correto afirmar que:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "a Hégira, migração de Maomé para Medina, ocorreu em 622 e é o primeiro ano do calendário muçulmano.",
+    "ok": true,
+    "e": "Está na caixa MAIS! da p. 303."
+   },
+   {
+    "id": "b",
+    "t": "Maomé nasceu em Medina e foi expulso de Constantinopla.",
+    "e": "Ele foi expulso de Meca e se refugiou em Medina."
+   },
+   {
+    "id": "c",
+    "t": "os cinco pilares incluem jejuar no Natal e visitar Constantinopla.",
+    "e": "O jejum é no mês do Ramadã, e a visita é a Meca."
+   },
+   {
+    "id": "d",
+    "t": "os povos dominados eram obrigados a se converter imediatamente.",
+    "e": "Eles podiam manter suas crenças; quem se convertia tinha vantagens, como isenção de alguns impostos."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "A Peste Negra, uma das causas da decadência do feudalismo, ocorreu:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "entre 1347 e 1351, matando milhões de pessoas e enfraquecendo a economia e o sistema feudal.",
+    "ok": true,
+    "e": "É o que trazem os slides da aula sobre a decadência do feudalismo."
+   },
+   {
+    "id": "b",
+    "t": "entre 476 e 481, logo após a queda do Império Romano do Ocidente.",
+    "e": "Essas datas são do começo da Idade Média."
+   },
+   {
+    "id": "c",
+    "t": "em 1054, junto com o Cisma do Oriente.",
+    "e": "1054 é o ano do Cisma, não da Peste Negra."
+   },
+   {
+    "id": "d",
+    "t": "em 1453, com a queda de Constantinopla.",
+    "e": "1453 é a conquista da cidade pelos turco-otomanos."
+   }
+  ]
+ },
+ {
+  "tipo": "mc",
+  "p": "O fortalecimento das monarquias, nos séculos XIV e XV, contribuiu para o fim do feudalismo porque:",
+  "alts": [
+   {
+    "id": "a",
+    "t": "os reis ampliaram seu poder e reduziram a autonomia dos senhores feudais.",
+    "ok": true,
+    "e": "É uma das engrenagens da decadência apresentadas nos slides."
+   },
+   {
+    "id": "b",
+    "t": "os reis passaram a viver nos feudos, como vassalos dos nobres.",
+    "e": "O movimento foi o inverso: os reis ganharam poder sobre os nobres."
+   },
+   {
+    "id": "c",
+    "t": "os reis proibiram o crescimento das cidades e do comércio.",
+    "e": "Cidades e comércio cresceram justamente nesse período."
+   },
+   {
+    "id": "d",
+    "t": "os reis entregaram o governo à burguesia.",
+    "e": "A burguesia se fortaleceu, mas quem ampliou o poder político foram os reis."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre o FEUDALISMO e a VASSALAGEM:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "O suserano era a parte mais poderosa e concedia terras e benefícios ao vassalo.",
+    "ok": true,
+    "e": "Correta (p. 298)."
+   },
+   {
+    "n": "II",
+    "t": "O feudo era sempre uma grande extensão de terra, nunca um cargo ou um direito.",
+    "e": "Errada: o feudo também podia ser um cargo importante ou o direito de cobrar impostos."
+   },
+   {
+    "n": "III",
+    "t": "Um mesmo nobre podia ser vassalo de um suserano e suserano de outro nobre.",
+    "ok": true,
+    "e": "Correta: por isso a hierarquia feudal tinha vários níveis."
+   },
+   {
+    "n": "IV",
+    "t": "Os vilões eram camponeses ligados à terra, sem liberdade para se mudar.",
+    "e": "Errada: quem estava ligado à terra eram os servos; os vilões tinham mais liberdade."
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas I e III estão corretas.",
+    "ok": true,
+    "e": "I e III estão corretas; II e IV estão erradas."
+   },
+   {
+    "id": "b",
+    "t": "Apenas II e IV estão corretas.",
+    "e": "São justamente as duas erradas."
+   },
+   {
+    "id": "c",
+    "t": "Apenas I, II e III estão corretas.",
+    "e": "A II está errada: o feudo podia ser um cargo ou um direito."
+   },
+   {
+    "id": "d",
+    "t": "I, II, III e IV estão corretas.",
+    "e": "II e IV estão erradas."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre as OBRIGAÇÕES DOS SERVOS:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "A corveia consistia em entregar parte da produção do manso servil ao senhor feudal.",
+    "e": "Errada: isso é a talha. A corveia é trabalhar no manso senhorial."
+   },
+   {
+    "n": "II",
+    "t": "A banalidade era o pagamento de uma taxa para usar o moinho, o forno e outros equipamentos.",
+    "ok": true,
+    "e": "Correta (p. 299)."
+   },
+   {
+    "n": "III",
+    "t": "O dízimo era cobrado pela Igreja católica e correspondia a 10% da produção mensal.",
+    "ok": true,
+    "e": "Correta (p. 299)."
+   },
+   {
+    "n": "IV",
+    "t": "Em troca das taxas, os servos recebiam proteção e o direito de utilizar as terras.",
+    "ok": true,
+    "e": "Correta: é a relação de servidão (p. 299)."
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas II, III e IV estão corretas.",
+    "ok": true,
+    "e": "Só a I está errada: ela descreve a talha, não a corveia."
+   },
+   {
+    "id": "b",
+    "t": "Apenas I e II estão corretas.",
+    "e": "A I está errada e a III e a IV também estão corretas."
+   },
+   {
+    "id": "c",
+    "t": "Apenas I, III e IV estão corretas.",
+    "e": "A I está errada: corveia é trabalho, não entrega de produção."
+   },
+   {
+    "id": "d",
+    "t": "I, II, III e IV estão corretas.",
+    "e": "A I está errada."
+   }
+  ]
+ },
+ {
+  "tipo": "rom",
+  "p": "Analise as afirmativas sobre a SOCIEDADE FEUDAL e o ORIENTE MEDIEVAL:",
+  "itens": [
+   {
+    "n": "I",
+    "t": "Na divisão em três estamentos, os oratores rezavam, os bellatores guerreavam e os laboratores trabalhavam.",
+    "ok": true,
+    "e": "Correta (p. 300)."
+   },
+   {
+    "n": "II",
+    "t": "O Cisma do Oriente, em 1054, dividiu o mundo cristão em Igreja católica romana e Igreja ortodoxa.",
+    "ok": true,
+    "e": "Correta (p. 302)."
+   },
+   {
+    "n": "III",
+    "t": "Constantinopla foi conquistada pelos turco-otomanos em 1453.",
+    "ok": true,
+    "e": "Correta (p. 302)."
+   },
+   {
+    "n": "IV",
+    "t": "No Império Árabe-Islâmico, a agricultura era a principal atividade econômica.",
+    "e": "Errada: a principal atividade econômica era o comércio (p. 303)."
+   }
+  ],
+  "alts": [
+   {
+    "id": "a",
+    "t": "Apenas I, II e III estão corretas.",
+    "ok": true,
+    "e": "Só a IV está errada: a principal atividade era o comércio."
+   },
+   {
+    "id": "b",
+    "t": "Apenas II e IV estão corretas.",
+    "e": "A IV está errada e a I e a III também estão corretas."
+   },
+   {
+    "id": "c",
+    "t": "Apenas I e IV estão corretas.",
+    "e": "A IV está errada; II e III estão corretas."
+   },
+   {
+    "id": "d",
+    "t": "I, II, III e IV estão corretas.",
+    "e": "A IV está errada."
+   }
+  ]
+ }
+];
+
+/* ====== EMBARALHAMENTO COM SEMENTE FIXA (mulberry32) — correta guardada pelo id ====== */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+var SEMENTE=20261151;
+var rnd=mulberry32(SEMENTE);
+Q.forEach(function(q){ if(q.alts){ var arr=q.alts.slice(); for(var i=arr.length-1;i>0;i--){ var j=Math.floor(rnd()*(i+1)); var tmp=arr[i]; arr[i]=arr[j]; arr[j]=tmp; } q.ordem=arr; } });
+var OBJ=Q.length;
+
+/* ====== ESTADO ====== */
+var CHAVE=KIT+'_simulado_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {resp:{},enviado:false}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } var d=new Date(); document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR'); }
+var LETRAS='ABCDEFGHJKLMNPQRSTUVWXYZ';
+function gerarCodigo(ac){ var xx=(ac<10?'0':'')+ac; var yy=LETRAS[Math.floor(Math.random()*LETRAS.length)]+LETRAS[Math.floor(Math.random()*LETRAS.length)]; return 'SIM-'+xx+'-'+yy; }
+function respondida(i){ var r=estado.resp[i]; return !(r===undefined||r===null||r===''); }
+function acertou(i){ var q=Q[i], r=estado.resp[i]; var a=q.alts.filter(function(x){return x.id===r;})[0]; return !!(a&&a.ok); }
+
+function render(){
+  var c=document.getElementById('questoes'); var h=''; var G=estado.gabarito;
+  Q.forEach(function(q,i){
+    var tipoTxt={mc:'Múltipla escolha',rom:'Números romanos'}[q.tipo];
+    h+='<div class="q" id="q'+i+'"><span class="tipo '+q.tipo+'">'+tipoTxt+'</span><div class="num">Questão '+(i+1)+' de '+Q.length+'</div><h3>'+q.p+'</h3>';
+    if(q.tipo==='rom'){
+      q.itens.forEach(function(it){ var cls='afirm'+(G?(it.ok?' ok':' no'):''); h+='<div class="'+cls+'">'+it.n+'. '+it.t+(G?'<div class="exp show">'+(it.ok?'✅ ':'❌ ')+it.e+'</div>':'')+'</div>'; });
+    }
+    q.ordem.forEach(function(a,k){
+      var letra='abcd'[k]; var sel=estado.resp[i]===a.id; var cls='alt'+(sel?' sel':'');
+      if(G){ if(a.ok) cls+=' certa'; else if(sel) cls+=' marcada-errada'; else cls+=' errada'; }
+      h+='<label class="'+cls+'"><input type="radio" name="q'+i+'" value="'+a.id+'" '+(sel?'checked':'')+' '+(estado.enviado?'disabled':'')+' onchange="marcar('+i+',\''+a.id+'\')"> <b>'+letra+')</b> '+a.t+(G?'<div class="exp show">'+(a.ok?'✅ ':'')+a.e+'</div>':'')+'</label>';
+    });
+    h+='</div>';
+  });
+  c.innerHTML=h; atualizarBarra(); if(estado.enviado) mostrarEnviado();
+}
+function marcar(i,v){ if(estado.enviado) return; estado.resp[i]=v; salvar(); var q=document.getElementById('q'+i); var labs=q.querySelectorAll('.alt'); for(var k=0;k<labs.length;k++){ labs[k].classList.toggle('sel', labs[k].querySelector('input').value===v); } atualizarBarra(); }
+function atualizarBarra(){ var n=0; Q.forEach(function(q,i){ if(respondida(i)) n++; }); document.getElementById('barra').style.width=(n/Q.length*100)+'%'; var b=document.getElementById('btn-enviar'); if(!estado.enviado){ b.disabled=n<Q.length; b.textContent=n<Q.length?'📨 Enviar simulado ('+n+' de '+Q.length+' respondidas)':'📨 Enviar simulado'; } }
+function enviar(){
+  if(estado.enviado) return;
+  var ac=0; Q.forEach(function(q,i){ if(acertou(i)===true) ac++; });
+  estado.acertos=ac; estado.objetivas=OBJ; estado.codigo=gerarCodigo(ac); estado.enviado=true; estado.concluido=true; estado.concluidoEm=new Date().toISOString();
+  salvar(); render(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function mostrarEnviado(){
+  var b=document.getElementById('btn-enviar'); b.disabled=true; b.textContent='✅ Simulado enviado — respostas travadas';
+  document.getElementById('codigo').classList.add('show'); document.getElementById('cod').textContent=estado.codigo;
+  document.getElementById('codtxt').textContent='Anote este código para os pais. Ele abre o gabarito comentado e o relatório no Início.';
+  document.getElementById('gab').classList.add('show'); document.getElementById('fim').style.display='block';
+}
+function abrirGab(){ var v=document.getElementById('gab-in').value.trim().toUpperCase(); if(v===estado.codigo||v==='PAIS-77'){ estado.gabarito=true; salvar(); render(); document.getElementById('gab-msg').innerHTML='<span style="color:#8fe0b4">Gabarito liberado: '+estado.acertos+' acertos de '+OBJ+' questões.</span>'; } else { document.getElementById('gab-msg').innerHTML='<span style="color:#ffb3b3">Código incorreto.</span>'; } }
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='simulado_elos-do-juramento.json'; a.click(); }
+function importar(ev){ var f=ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{ estado=JSON.parse(r.result); if(!estado.resp) estado.resp={}; salvar(); render(); mostrarModal('✅ Progresso importado!',false);}catch(e){ mostrarModal('❌ Arquivo inválido.',false);} }; r.readAsText(f); }
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Apagar as respostas deste Simulado? (Se ele já foi enviado, o código e a conclusão são mantidos.)',true); }
+function mostrarModal(txt,confirmar){ document.getElementById('modal-txt').innerHTML=txt; document.getElementById('modal').classList.add('show'); document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none'; document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar&&acaoZerar){ if(!estado.enviado){ estado={resp:{},enviado:false}; salvar(); render(); } else { acaoZerar=null; mostrarModal('O Simulado já foi enviado: as respostas ficam travadas. Para refazer do zero, use "Zerar o kit inteiro" no Início.',false); return; } } acaoZerar=null; fecharModal(); }; }
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+if(checarTrava()){ render(); }
+</script>
+</body>
+</html>

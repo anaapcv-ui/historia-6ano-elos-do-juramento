@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Pergaminho do Senhorio · Elos do Juramento · História 6º</title>
+<style>
+  :root{
+    --fundo:#0f1117; --fundo2:#191d27; --aco:#2c3242; --aco2:#3f4659;
+    --laranja:#e8b23c; --azul:#6aa6e0; --verde:#4ed08a; --vermelho:#f0695f;
+    --amarelo:#f5cd5c; --texto:#e7ebf3; --cinza:#98a1b4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,Arial,sans-serif;
+    background:radial-gradient(1100px 520px at 50% -10%,#242b3f,#0f1117 62%),var(--fundo);
+    color:var(--texto);line-height:1.6;padding-bottom:60px}
+  header{background:linear-gradient(120deg,#1b2131,#121622 52%,#2b2114);padding:28px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.55);border-bottom:4px solid var(--laranja);position:relative;overflow:hidden}
+  header:before{content:"";position:absolute;left:50%;top:50%;width:210px;height:210px;margin:-105px 0 0 -105px;border:4px solid rgba(232,178,60,.10);border-radius:50%}
+  header:after{content:"";position:absolute;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border:4px solid rgba(232,178,60,.08);border-radius:50%}
+  header .selo{font-size:.76rem;letter-spacing:2px;color:#e8cf9a;text-transform:uppercase;position:relative}
+  header h1{font-size:1.6rem;margin:7px 0 3px;position:relative}
+  header p{color:#ccd4e2;font-size:.93rem;position:relative}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--aco)}
+  .barra-nav a.on{background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--laranja);font-size:1.1rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .ordem{text-align:center;font-weight:bold;margin:10px 0;font-size:.95rem;color:#fff}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--fundo2);border:1px solid var(--aco);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .mini:hover{background:#242a39}
+  /* ---- placar / corrente de elos ---- */
+  .placar{background:#0a0c12;border:2px solid #272d3c;border-radius:16px;padding:14px;margin-bottom:18px;text-align:center}
+  .placar h3{color:var(--amarelo);font-size:.95rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+  .placar p.sub{color:var(--cinza);font-size:.8rem;margin-bottom:10px}
+  .placar .pts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .placar .pt{width:58px;padding:6px 0;border-radius:14px;background:#141924;border:2px solid var(--aco2);cursor:pointer;font-family:'Courier New',monospace;font-weight:bold;color:#5a6378}
+  .placar .pt small{display:block;font-family:'Segoe UI',sans-serif;font-weight:normal;font-size:.62rem}
+  .placar .pt.aberto{color:var(--laranja);border-color:var(--laranja)}
+  .placar .pt.feito{color:#07241a;background:var(--verde);border-color:var(--verde);box-shadow:0 0 10px rgba(78,208,138,.45)}
+  .placar .total{font-family:'Courier New',monospace;font-size:1.6rem;color:var(--laranja);margin-top:8px}
+  /* ---- blocos ---- */
+  .bloco{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#20263a,#171b26);border-bottom:1px solid var(--aco)}
+  .bloco-cab .num{background:var(--laranja);color:#2a1d00;font-weight:bold;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.gb .bloco-cab .num{background:var(--azul);color:#06203a}
+  .bloco-cab h3{font-size:1.06rem;color:#fff}
+  .bloco-cab .porto{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:6px}
+  .texto .destaque{color:var(--laranja);font-weight:bold}
+  .bloco.gb .texto .destaque{color:var(--azul)}
+  .olhar{background:#21283a;border-left:3px solid var(--amarelo);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.92rem}
+  .olhar b{color:var(--amarelo)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#141925;border:1px solid var(--aco);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#1d3550;color:#bcdcf7}
+  .tag.apl{background:#1f3f2d;color:#aee3c3}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:70px;background:#0b0e15;color:var(--texto);border:1px solid var(--aco2);border-radius:8px;padding:9px;font-family:inherit;font-size:.95rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.85rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3a12;border:1px solid var(--laranja);color:#ffeccb}
+  .aviso.vermelho{display:block;background:#471a1c;border:1px solid var(--vermelho);color:#ffd1cd}
+  .modelo{margin-top:10px;padding:10px 12px;background:#12301f;border:1px solid var(--verde);border-radius:8px;font-size:.9rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#8fe3b4;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.88rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--verde);border-color:var(--verde);color:#04231a}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--azul);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1a20;border:2px solid var(--vermelho);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb9b3;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--azul);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#222838}
+  .revisar{background:#3a2d12;border:2px solid var(--laranja);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--laranja);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--azul);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#8fe3b4;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--verde);color:#04231a;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- quiz / simulado ---- */
+  .codigo{background:linear-gradient(120deg,#153328,#1b4a35);border:2px solid var(--verde);border-radius:14px;padding:16px;text-align:center;margin-bottom:16px;display:none}
+  .codigo.show{display:block}
+  .codigo .cod{font-size:1.8rem;font-weight:bold;letter-spacing:3px;color:#8fe3b4;margin:6px 0}
+  .progresso{height:10px;background:var(--aco);border-radius:6px;overflow:hidden;margin-bottom:16px}
+  .progresso div{height:100%;background:linear-gradient(90deg,var(--azul),var(--laranja));width:0;transition:width .3s}
+  .q{background:var(--fundo2);border:1px solid var(--aco);border-radius:16px;padding:16px;margin-bottom:14px}
+  .q .num{color:var(--azul);font-weight:bold;font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+  .q .tema,.q .tipo{float:right;font-size:.7rem;color:var(--cinza);background:var(--fundo);border:1px solid var(--aco2);border-radius:10px;padding:2px 8px}
+  .q .tipo.rom{color:#f3d58a;border-color:var(--laranja)}
+  .q h3{font-size:1rem;margin:6px 0 10px;font-weight:600}
+  .afirm{background:#141925;border-left:3px solid var(--aco2);padding:8px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.93rem}
+  .afirm.ok{border-left-color:var(--verde)}
+  .afirm.no{border-left-color:#777;color:#aaa}
+  .alt{display:block;background:#141925;border:1px solid var(--aco2);border-radius:10px;padding:10px 12px;margin:6px 0;cursor:pointer}
+  .alt:hover{border-color:var(--laranja)}
+  .alt input{margin-right:8px}
+  .alt.sel{border-color:var(--laranja);background:#2a2314}
+  .alt.certa{border-color:var(--verde);background:#12301f}
+  .alt.errada{border-color:#4a4a55;background:#1b1d25;color:#a7a7b2}
+  .alt.marcada-errada{border-color:var(--vermelho);background:#3a1a20}
+  .exp{margin-top:8px;font-size:.88rem;padding:8px 10px;border-radius:8px;background:#0f131d;border-left:3px solid var(--laranja);display:none}
+  .exp.show{display:block}
+  .enviar{width:100%;background:var(--laranja);color:#2a1d00;border:none;border-radius:12px;padding:14px;font-size:1.05rem;font-weight:bold;margin:10px 0}
+  .enviar:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .gab{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0;display:none}
+  .gab.show{display:block}
+  .gab input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:180px;text-transform:uppercase}
+  .gab button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px}
+  .gab .msg{margin-top:8px;font-size:.9rem}
+  /* ---- resumo ---- */
+  .sec{margin:26px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.25rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:var(--laranja);color:#2a1d00;font-weight:bold}
+  .sec .pill.gb{background:var(--azul);color:#06203a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .card{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:14px;border-top:4px solid var(--laranja)}
+  .card.gb{border-top-color:var(--azul)}
+  .card h3{font-size:1rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.93rem}
+  .card b{color:var(--laranja)}
+  .card.gb b{color:var(--azul)}
+  .grande{background:linear-gradient(120deg,#20263a,#171b26);border:2px solid var(--laranja);border-radius:16px;padding:16px;font-size:1.02rem}
+  .grande b{color:var(--amarelo)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.92rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:12px 0}
+  .postit b{color:#7a4a00}
+  .pegbox{background:#3a1a20;border:2px solid var(--vermelho);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.92rem}
+  .pegbox b{color:#ffb9b3}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:185px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.88rem}
+  .flip .front{background:linear-gradient(135deg,#242b3f,#171b26);border:1px solid var(--aco2);font-weight:bold;font-size:1rem}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.72rem;margin-top:6px}
+  .flip .back{background:#12301f;border:1px solid var(--verde);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--aco);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#222838}
+  .duelo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .duelo .lado{background:#141925;border-radius:12px;padding:12px;border:2px solid var(--aco2);text-align:center}
+  .duelo .lado.l1{border-color:var(--azul)}
+  .duelo .lado.l2{border-color:var(--laranja)}
+  .duelo .lado .ic{font-size:2rem}
+  .duelo h4{margin:4px 0}
+  .duelo.tres{grid-template-columns:1fr 1fr 1fr}
+  @media(max-width:600px){.duelo,.duelo.tres{grid-template-columns:1fr}}
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .numeros div{background:#0a0c12;border:1px solid #272d3c;border-radius:12px;padding:10px;text-align:center;font-size:.82rem}
+  .numeros div span{display:block;font-family:'Courier New',monospace;font-size:1.35rem;font-weight:bold;color:var(--laranja)}
+  .linha{border-left:3px solid var(--laranja);margin:10px 0 10px 10px;padding-left:16px}
+  .linha .ev{position:relative;margin-bottom:12px}
+  .linha .ev:before{content:"";position:absolute;left:-23px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 3px rgba(232,178,60,.2)}
+  .linha .ev b{color:var(--amarelo);display:block;font-family:'Courier New',monospace}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.9rem}
+  .gloss b{color:var(--laranja)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#1a2a20,#153328);border:2px solid var(--verde);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#8fe3b4;margin-bottom:8px}
+  .fim button{background:var(--verde);color:#04231a;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#262d3e;color:#6f7896;cursor:not-allowed}
+  .fim a,.fim a.btn{display:inline-block;margin:6px;background:var(--azul);color:#06203a;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#262d3e;color:#6f7896;pointer-events:none}
+  /* ---- index ---- */
+  .selo-pais{display:none;background:#153328;border:1px solid var(--verde);color:#8fe3b4;border-radius:10px;padding:10px 14px;margin:12px 0;text-align:center;font-weight:bold}
+  .selo-pais.show{display:block}
+  .selo-pais button{margin-left:10px;background:transparent;border:1px solid var(--verde);color:#8fe3b4;border-radius:8px;padding:4px 10px;cursor:pointer;font-family:inherit}
+  .trilha{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0}
+  .trilha .card{position:relative;background:var(--fundo2);border:1px solid var(--aco);border-top:1px solid var(--aco);border-radius:16px;padding:16px;text-decoration:none;color:var(--texto);display:block;transition:transform .15s,box-shadow .15s}
+  .trilha .card .passo{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza)}
+  .trilha .card .emoji{font-size:2rem;margin:4px 0}
+  .trilha .card h3{font-size:1.05rem;margin-bottom:6px}
+  .trilha .card p{font-size:.85rem;color:#c3cada}
+  .trilha .card .estado{margin-top:10px;font-size:.8rem;font-weight:bold;padding:6px 8px;border-radius:8px}
+  .trilha .card.aberto{border-color:var(--laranja)}
+  .trilha .card.aberto:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(232,178,60,.22)}
+  .trilha .card.aberto .estado{background:#2a2314;color:var(--laranja)}
+  .trilha .card.novo{animation:brilho 1.6s ease-in-out 3;border-color:var(--laranja)}
+  @keyframes brilho{0%,100%{box-shadow:0 0 0 rgba(232,178,60,0)}50%{box-shadow:0 0 22px rgba(232,178,60,.6)}}
+  .trilha .card.novo .estado{background:#3a2d12;color:var(--laranja)}
+  .trilha .card.feito{border-color:var(--verde)}
+  .trilha .card.feito .estado{background:#12301f;color:#8fe3b4}
+  .trilha .card.trancado{opacity:.55;filter:grayscale(.6);pointer-events:none;cursor:not-allowed}
+  .trilha .card.trancado .estado{background:#1d212c;color:var(--cinza)}
+  .trilha .card .cadeado{position:absolute;top:10px;right:12px;font-size:1.3rem;padding:0}
+  .como{background:var(--fundo2);border:1px solid var(--aco);border-radius:14px;padding:16px;margin:16px 0}
+  .como h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .como ol{margin-left:20px}
+  .como li{margin-bottom:6px}
+  .cai{background:#21283a;border-left:4px solid var(--amarelo);border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;font-size:.93rem}
+  .cai h2{color:var(--amarelo);font-size:1.05rem;margin-bottom:6px}
+  .cai p{margin-bottom:6px}
+  .rel{background:var(--fundo2);border:1px dashed var(--azul);border-radius:14px;padding:16px;margin:16px 0}
+  .rel h2{color:var(--azul);font-size:1.1rem;margin-bottom:8px}
+  .rel input{padding:9px;border-radius:8px;border:1px solid var(--aco2);background:#0b0e15;color:var(--texto);font-size:1rem;width:170px;text-transform:uppercase}
+  .rel button{background:var(--azul);color:#06203a;border:none;border-radius:8px;padding:9px 14px;font-weight:bold;margin-left:6px;cursor:pointer;font-family:inherit}
+  .rel .out{margin-top:12px;font-size:.9rem}
+  .rel .bloco{background:#141925;border:1px solid var(--aco);border-radius:10px;padding:10px 12px;margin:8px 0}
+  .rel .bloco b{color:var(--laranja)}
+  .rel .liberar{margin-top:10px;background:var(--verde);color:#04231a}
+  .rel .perigo{background:#471a1c;color:#ffd1cd;border:1px solid var(--vermelho)}
+  .dica{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.9rem;box-shadow:3px 4px 10px rgba(0,0,0,.45);transform:rotate(-1deg);margin:16px 0}
+  .dica b{color:#7a4a00}
+  /* ---- modais ---- */
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,8,14,.92);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--laranja);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a,.modal button{display:inline-block;background:var(--laranja);color:#2a1d00;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none;font-family:inherit;cursor:pointer}
+  .modal button.sec,.modal .mini{background:transparent;border:1px solid var(--aco2);color:var(--texto);margin-left:8px}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Elos do Juramento · História 6º ano · Colégio São José</div>
+  <h1>🗺️ Resumo — Pergaminho do Senhorio</h1>
+  <p>Tudo o que cai, em linha do tempo, tabelas, cartas e post-its · Livro pp. 296–304 + slides da aula</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>📜 O pergaminho</h2>
+    <p>Todo senhorio guardava um pergaminho com os acordos, as obrigações e os nomes que importavam. Este é o seu: tudo o que cai na prova de <b>Feudalismo</b>, em linha do tempo, tabelas, cards, cartas para virar e post-its. Use para fechar as dúvidas que a Prova de Fidelidade (Quiz) mostrou. No fim da página, clique em <b>“Li o resumo até o fim”</b> para destravar o Juramento Final (Simulado).</p>
+  </div>
+  <div class="painel"><span id="salvo">📏 Rolagem máxima: 0%</span><button class="mini" onclick="exportar()">📥 Exportar</button></div>
+
+  <div class="sec"><span class="pill">Linha do tempo</span><h2>🕰️ As datas que a prova cobra</h2></div>
+  <div class="linha">
+    <div class="ev"><b>Séculos V a XV</b>A Idade Média: cerca de 1 000 anos. Alta Idade Média = séculos V ao X; Baixa Idade Média = séculos XI ao XV.</div>
+    <div class="ev"><b>481 d.C.</b>O rei franco <b>Clóvis</b>, da dinastia merovíngia, converte-se ao cristianismo e fortalece a Igreja católica.</div>
+    <div class="ev"><b>527</b>Justiniano I assume o Império Bizantino e promove o <b>Código Justiniano</b>, que compila as leis romanas.</div>
+    <div class="ev"><b>622</b><b>Hégira</b>: a migração de Maomé de Meca para Medina. É o primeiro ano do calendário muçulmano.</div>
+    <div class="ev"><b>632</b>Morte de Maomé. Surgem as correntes <b>sunita</b> e <b>xiita</b>, e o império se divide em califados.</div>
+    <div class="ev"><b>768</b><b>Carlos Magno</b> assume o Reino Franco e consolida a dinastia carolíngia, criando o Império Carolíngio.</div>
+    <div class="ev"><b>800</b>O <b>papa Leão III</b> coroa Carlos Magno imperador: a Igreja passa a validar o poder do rei.</div>
+    <div class="ev"><b>1054</b><b>Cisma do Oriente</b>: o cristianismo se divide em Igreja católica romana (papa) e Igreja ortodoxa (imperador bizantino).</div>
+    <div class="ev"><b>Século XII</b>A proibição de casamento dos clérigos é gradualmente instituída: os bens ficam dentro da Igreja.</div>
+    <div class="ev"><b>1347–1351</b><b>Peste Negra</b>: mata milhões de pessoas e enfraquece a economia e o sistema feudal.</div>
+    <div class="ev"><b>1453</b>Constantinopla é conquistada pelos <b>turco-otomanos</b>: fim do Império Bizantino.</div>
+  </div>
+
+  <div class="sec"><span class="pill gb">Elo 1 · p. 296</span><h2>🏰 Alta × Baixa Idade Média</h2></div>
+  <div style="overflow-x:auto">
+  <table class="tabela">
+    <thead><tr><th></th><th>Alta Idade Média (séculos V ao X)</th><th>Baixa Idade Média (séculos XI ao XV)</th></tr></thead>
+    <tbody>
+      <tr><td><b>O que marca</b></td><td>Migrações dos povos bárbaros · Reino Franco · <b>Feudalismo</b> · Declínio das cidades e do comércio · Fortalecimento dos senhores feudais e da Igreja católica</td><td>Cruzadas · Renascimento Comercial e Urbano · <b>Redução do poder dos senhores feudais</b> · Comércio com o Oriente · Renascimento Cultural e Científico</td></tr>
+      <tr><td><b>Movimento</b></td><td>Do campo: <b>ruralização</b> e fragmentação do poder político</td><td>Para a cidade: crescimento urbano e comercial</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="postit">📌 <b>Dica de prova:</b> a Idade Média nasce da <b>fusão</b> entre a civilização romana e as culturas bárbaras — não da destruição de uma pela outra. Heranças romanas: Igreja católica, <b>latim</b> e <b>colonato</b>. Heranças germânicas: <b><i>comitatus</i></b>, valorização do guerreiro e a língua.</div>
+
+  <div class="sec"><span class="pill">Elo 2 · p. 297</span><h2>👑 Os dois reis francos</h2></div>
+  <div class="duelo">
+    <div class="lado l1"><div class="ic">⚔️</div><h4>Clóvis · 481</h4><p>Dinastia <b>merovíngia</b> (de Meroveu). <b>Converte-se ao cristianismo</b>: a Igreja ganha o apoio do governante para catequizar, e o rei amplia poder e território.</p></div>
+    <div class="lado l2"><div class="ic">👑</div><h4>Carlos Magno · 768</h4><p>Dinastia <b>carolíngia</b>. Cria o <b>Império Carolíngio</b>, aprimora comitatus e colonato e é <b>coroado imperador pelo papa Leão III em 800</b>. Após sua morte, o império se fragmenta.</p></div>
+  </div>
+  <div class="postit">📌 <b>Por que a coroação de 800 importa tanto?</b> Porque a partir dela fica claro que <b>a Igreja valida o poder do rei</b>. O imperador garante a conversão dos súditos; a Igreja garante que os povos dominados reconheçam a liderança dele.</div>
+
+  <div class="sec"><span class="pill gb">Elo 3 · p. 298</span><h2>🤝 A corrente da vassalagem</h2></div>
+  <div class="grande">Vassalagem = <b>compromissos mútuos</b>. O <b>suserano</b> (mais poderoso) concede terras e benefícios; o <b>vassalo</b> jura fidelidade e apoio. O que ele recebe chama-se <b>feudo</b>.</div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card gb"><h3>🎁 O feudo pode ser…</h3><ul><li>uma grande extensão de <b>terra</b>;</li><li>um <b>cargo importante</b>;</li><li>o <b>direito de cobrar impostos</b> da população.</li></ul></div>
+    <div class="card gb"><h3>🧑‍🌾 Quem trabalha</h3><ul><li><b>Servos</b>: ligados à terra, na <b>base da pirâmide</b>; devem lealdade e obediência.</li><li><b>Vilões</b>: camponeses <b>não ligados à terra</b>; podem se mudar e escolher patrão; exercem ofícios, comércio local e ajudam na administração.</li></ul></div>
+    <div class="card gb"><h3>📜 Homenagem</h3><ul><li>Cerimônia com rituais e <b>juramentos específicos</b>.</li><li>Um nobre pode ser <b>vassalo e suserano ao mesmo tempo</b>.</li><li>Resultado: <b>descentralização do poder político</b>.</li></ul></div>
+  </div>
+
+  <div class="sec"><span class="pill">Elo 4 · p. 298</span><h2>🗺️ As três terras do senhorio</h2></div>
+  <div class="duelo tres">
+    <div class="lado l2"><div class="ic">🏰</div><h4>Manso senhorial</h4><p>Grande porção de terra. <b>Tudo o que é produzido ali</b> (por servos e vilões) <b>vira propriedade do senhor feudal</b>.</p></div>
+    <div class="lado l1"><div class="ic">🥕</div><h4>Manso servil</h4><p><b>Pequenos lotes</b> cultivados pelos servos <b>para o próprio sustento</b>.</p></div>
+    <div class="lado l2"><div class="ic">🌲</div><h4>Terras comunais</h4><p>Florestas, pastagens e áreas <b>não cultivadas</b>, usadas <b>por servos e por senhores feudais</b>.</p></div>
+  </div>
+  <div class="postit">📌 <b>“Senhorio” não é só a terra:</b> é a terra <b>mais o direito de cobrar taxas</b> de quem mora nela. Na ilustração da p. 298 aparecem castelo, plantação, moinho, pastos, igreja, casa do servo, manso comunal, manso senhorial e manso servil.</div>
+
+  <div class="sec"><span class="pill gb">Elo 5 · p. 299</span><h2>⛓️ As quatro obrigações (a tabela que salva a prova)</h2></div>
+  <div style="overflow-x:auto">
+  <table class="tabela">
+    <thead><tr><th>Obrigação</th><th>O que é</th><th>Paga-se com</th><th>Vai para</th></tr></thead>
+    <tbody>
+      <tr><td><b>Corveia</b></td><td>Trabalhar <b>2 a 3 vezes por semana</b> no manso senhorial</td><td><b>Trabalho</b></td><td>Senhor feudal</td></tr>
+      <tr><td><b>Talha</b></td><td>Destinar <b>parte da produção do manso servil</b> ao senhor</td><td><b>Produto</b></td><td>Senhor feudal</td></tr>
+      <tr><td><b>Banalidade</b></td><td>Taxa para usar <b>moinho, forno e outros equipamentos</b></td><td><b>Taxa</b></td><td>Senhor feudal</td></tr>
+      <tr><td><b>Dízimo</b></td><td><b>10% da produção mensal</b> de cada pessoa</td><td><b>Produção</b></td><td><b>Igreja católica</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="postit">📌 <b>Macete:</b> corveia = <b>c</b>orpo (trabalho) · talha = o que se <b>talha</b> da colheita · banalidade = pagar pelas <b>b</b>enfeitorias · dízimo = <b>dez</b> por cento, e é da Igreja. Em troca de tudo isso, o servo recebia <b>proteção</b> e o <b>direito de usar as terras e os instrumentos</b> — é a relação de <b>servidão</b>.</div>
+
+  <div class="sec"><span class="pill">Elo 6 · p. 299</span><h2>🌾 Como se vivia no feudo</h2></div>
+  <div class="grid">
+    <div class="card"><h3>🍞 O que se plantava</h3><ul><li>Cereais: <b>trigo</b> e <b>centeio</b> (para farinha).</li><li>O <b>pão</b> era a base da alimentação medieval.</li><li>Verduras e hortaliças; porcos, ovelhas e cabras.</li></ul></div>
+    <div class="card"><h3>😣 Por que dava fome</h3><ul><li>Técnicas e ferramentas de <b>baixa produtividade</b>.</li><li>O <b>solo se esgotava</b> com o tempo.</li><li><b>Secas</b> ou <b>chuvas intensas</b> derrubavam a produção.</li></ul></div>
+    <div class="card"><h3>🔁 Economia</h3><ul><li>Feudos buscavam a <b>autossuficiência</b>.</li><li><b>Poucas moedas</b> circulando; alguns feudos cunhavam as suas.</li><li>Nas feiras, o <b>escambo</b> (troca de produtos) virou comum.</li></ul></div>
+  </div>
+  <div class="postit">📌 <b>Prato de nobre × prato de servo:</b> o nobre comia carnes variadas, pães, legumes, cereais, frutas, especiarias e vinhos. O servo era proibido de comer algumas carnes (como as de caça); a base da dieta dos mais pobres era <b>pão, cereais e legumes</b>, com carne reservada a festas.</div>
+
+  <div class="sec"><span class="pill gb">Elo 7 · p. 300</span><h2>⚖️ Os três estamentos</h2></div>
+  <div class="duelo tres">
+    <div class="lado l1"><div class="ic">🙏</div><h4><i>Oratores</i></h4><p>Os que <b>rezavam</b>: membros da Igreja. <b>Alto clero</b> = papa, bispos e abades (em geral nobres). <b>Baixo clero</b> = párocos e monges (origem humilde).</p></div>
+    <div class="lado l2"><div class="ic">🛡️</div><h4><i>Bellatores</i></h4><p>Os que <b>guerreavam</b>: reis, senhores feudais, cavaleiros e familiares. Pela tradição germânica, cabia a eles a guerra e a proteção.</p></div>
+    <div class="lado l1"><div class="ic">🧑‍🌾</div><h4><i>Laboratores</i></h4><p>Os que <b>trabalhavam</b>: a maior parte da população. Servos, vilões e um <b>número reduzido de escravizados</b> (tarefas domésticas).</p></div>
+  </div>
+  <div class="postit">📌 <b>Pouca mobilidade social:</b> o acesso a terras e benefícios era <b>hereditário</b>, e a Igreja ensinava que <b>Deus havia predeterminado a função de cada um</b>. <b>Estamento</b> = grupo social com <i>status</i> e direitos definidos por lei ou costume.</div>
+  <div class="postit">📌 <b>Como a Igreja ficou tão rica:</b> <b>doações da nobreza</b> + <b>dízimo</b> + a <b>proibição de casamento dos clérigos</b> (século XII), que manteve os bens dentro da instituição. Resultado: a <b>instituição mais rica da Europa</b>.</div>
+
+  <div class="sec"><span class="pill">Elo 8 · pp. 300–301</span><h2>⛪ Cotidiano e poder da Igreja</h2></div>
+  <div class="grid">
+    <div class="card"><h3>🎉 Lazer dos nobres</h3><ul><li><b>Banquetes</b> para casamentos e alianças.</li><li>Artistas ambulantes e <b>jograis</b>.</li><li><b>Torneios</b> de cavaleiros, com árbitros e prêmios.</li><li><b>Xadrez</b>, levado à Europa pelos <b>árabes</b>.</li></ul></div>
+    <div class="card"><h3>🪓 Lazer dos camponeses</h3><ul><li>Jogos próprios.</li><li>Disputas e <b>lutas ao ar livre</b>.</li></ul><h3 style="margin-top:10px">⛪ De todos</h3><ul><li><b>Páscoa</b> e <b>Natal</b>, batizados e casamentos.</li><li><b>Procissões</b> reuniam todos os estamentos.</li></ul></div>
+    <div class="card"><h3>✝️ O poder da Igreja</h3><ul><li>Instituição <b>mais poderosa</b> da Europa; o poder espiritual <b>superava o dos reis</b>.</li><li>Visão <b>teocêntrica</b>: tudo explicado pela vontade divina.</li><li>Doença = assunto espiritual; também havia <b>emplastros</b>, chás e xaropes dos saberes populares (“pagãos”).</li><li>Quem contrariasse os <b>dogmas</b>: <b>excomunhão</b> e, às vezes, morte.</li><li>Controle sobre o corpo, <b>especialmente o das mulheres</b>.</li></ul></div>
+  </div>
+
+  <div class="sec"><span class="pill gb">Elo 9 · pp. 302–304</span><h2>🕌 O Oriente medieval</h2></div>
+  <div class="duelo">
+    <div class="lado l1"><div class="ic">🏛️</div><h4>Império Bizantino</h4><p><b>Justiniano I (527)</b> quis restaurar a glória romana e criou o <b>Código Justiniano</b>. <b>Constantinopla</b> era passagem obrigatória entre África, Europa e Ásia (perfumes, sedas, porcelanas). <b>Cesaropapismo</b>: poder político e religioso no imperador. <b>Cisma do Oriente (1054)</b> → Igreja católica romana × Igreja ortodoxa. Queda em <b>1453</b>, para os turco-otomanos.</p></div>
+    <div class="lado l2"><div class="ic">🕌</div><h4>Império Árabe-Islâmico</h4><p><b>Maomé</b> difunde o <b>Islã</b> (monoteísta). <b>Cinco pilares</b>: orar 5× ao dia voltado a Meca; jejuar no Ramadã; dar esmolas; visitar Meca ao menos uma vez; recitar o credo em <b>Alá</b>. Expulso de Meca, refugia-se em <b>Medina</b> (<b>Hégira, 622</b>) e depois retorna e limpa a <b>Caaba</b>. Após sua morte (<b>632</b>): <b>sunitas</b> × <b>xiitas</b> e os <b>califados</b>. <b>Comércio</b> era a principal atividade; legados em filosofia, medicina, matemática, arquitetura, astronomia e química.</p></div>
+  </div>
+  <div class="postit">📌 <b>Bizâncio → Constantinopla → Istambul:</b> fundada pelos gregos no século VII a.C., rebatizada por <b>Constantino em 330 d.C.</b>, hoje é a maior cidade da Turquia. No mapa do <b>predomínio religioso no século XI</b> (p. 304) aparecem três áreas: <b>cristãos católicos</b>, <b>cristãos ortodoxos</b> e <b>muçulmanos</b>.</div>
+
+  <div class="sec"><span class="pill">Elo 10 · slides da aula</span><h2>💥 A decadência do feudalismo</h2></div>
+  <div class="grande">O feudalismo enfraqueceu entre os <b>séculos XIV e XV</b>, por crises <b>econômicas, sociais, políticas e culturais</b>. A decadência do feudalismo abriu caminho para o <b>mundo moderno</b>.</div>
+  <div class="numeros" style="margin-top:12px">
+    <div><span>1</span>Crises no campo: queda da produção, guerras, fome e menos camponeses</div>
+    <div><span>2</span>Peste Negra (1347–1351): milhões de mortes</div>
+    <div><span>3</span>Cidades e comércio crescem: surge a <b>burguesia</b></div>
+    <div><span>4</span>Monarquias se fortalecem: reis reduzem a autonomia dos senhores</div>
+    <div><span>5</span>Renascimento: valorização do ser humano e novas ideias</div>
+    <div><span>6</span>Resultado: o sistema feudal enfraquece</div>
+  </div>
+
+  <div class="sec"><span class="pill">Cartas do escriba</span><h2>🃏 Vire as cartas</h2></div>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Suserano<small>quem é?</small></div><div class="face back">A parte <b>mais poderosa</b>: <b>concede</b> terras e benefícios ao vassalo.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Vassalo<small>quem é?</small></div><div class="face back">Quem <b>recebe</b> o feudo e, em troca, <b>jura fidelidade e apoio</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Vilão<small>é bandido?</small></div><div class="face back">Não! É o camponês <b>não ligado à terra</b>, com mais liberdade para se mudar e escolher patrão.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Corveia<small>é o quê?</small></div><div class="face back"><b>Trabalho</b> obrigatório no manso senhorial, <b>2 a 3 vezes por semana</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Banalidade<small>paga-se pelo quê?</small></div><div class="face back">Pelo uso do <b>moinho, do forno</b> e de outros equipamentos do senhor.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Dízimo<small>vai para quem?</small></div><div class="face back">Para a <b>Igreja católica</b>: <b>10%</b> da produção mensal de cada pessoa.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Estamento<small>quer dizer…</small></div><div class="face back">Grupo social com <i>status</i> e direitos definidos <b>por lei ou costume</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Teocêntrica<small>que visão é essa?</small></div><div class="face back">A que coloca <b>Deus no centro de tudo</b>: os fenômenos se explicam pela vontade divina.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Cesaropapismo<small>onde existia?</small></div><div class="face back">No <b>Império Bizantino</b>: poder <b>político e religioso</b> concentrado no imperador.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Hégira<small>o que é?</small></div><div class="face back">A migração de <b>Maomé para Medina</b>, em <b>622</b>: ano 1 do calendário muçulmano.</div></div></div>
+  </div>
+
+  <div class="sec"><span class="pill">Alerta</span><h2>⚠️ Pegadinhas</h2></div>
+  <div class="pegbox">⚠️ <b>Servo ≠ escravizado.</b> O servo tinha liberdade limitada e obrigações, mas não era propriedade de ninguém.</div>
+  <div class="pegbox">⚠️ <b>Corveia ≠ talha.</b> Corveia é <b>trabalho</b> no manso senhorial; talha é <b>parte da produção</b> do manso servil.</div>
+  <div class="pegbox">⚠️ <b>O dízimo é da Igreja</b>, não do senhor feudal — e é sobre a produção <b>mensal</b>.</div>
+  <div class="pegbox">⚠️ <b>Feudo nem sempre é terra:</b> podia ser um cargo importante ou o direito de cobrar impostos.</div>
+  <div class="pegbox">⚠️ <b>1054 ≠ 1453.</b> 1054 é o <b>Cisma do Oriente</b>; 1453 é a <b>queda de Constantinopla</b>.</div>
+
+  <div class="sec"><span class="pill">Glossário</span><h2>📚 Palavras do capítulo</h2></div>
+  <div class="gloss">
+    <div><b>Dinastia:</b> reis e rainhas pertencentes a uma mesma família.</div>
+    <div><b>Comitatus:</b> entre os germânicos, a relação de lealdade e honra entre guerreiros e um chefe militar.</div>
+    <div><b>Colonato:</b> prática romana em que grandes proprietários arrendavam terras e recebiam bens e serviços.</div>
+    <div><b>Vassalagem:</b> acordo de compromissos mútuos entre suserano e vassalo.</div>
+    <div><b>Feudo:</b> bem concedido na vassalagem — terra, cargo ou direito de cobrar impostos.</div>
+    <div><b>Homenagem:</b> cerimônia, com rituais e juramentos, do vassalo ao suserano.</div>
+    <div><b>Senhorio:</b> as terras e o direito de cobrar taxas de quem as habitava.</div>
+    <div><b>Servidão:</b> relação em que o servo paga taxas e recebe proteção e o direito de usar a terra.</div>
+    <div><b>Estamento:</b> grupo social com <i>status</i> e direitos definidos por lei ou costume.</div>
+    <div><b>Dogma:</b> princípio religioso tido como verdade absoluta e inquestionável.</div>
+    <div><b>Emplastro:</b> medicamento aplicado na pele para tratar doenças.</div>
+    <div><b>Teocêntrica:</b> visão de mundo que coloca Deus no centro de tudo.</div>
+    <div><b>Jograis:</b> artistas populares que viajavam oferecendo música, dança, acrobacias e malabarismos.</div>
+    <div><b>Escambo:</b> troca de produtos, sem uso de moeda.</div>
+    <div><b>Cesaropapismo:</b> concentração da liderança política e religiosa na figura do imperador.</div>
+    <div><b>Califa:</b> líder religioso e político de um califado, no Império Árabe-Islâmico.</div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. ⛓️</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='elos_do_juramento';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(6px)';
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare a Juramento Final (Simulado), como se fosse a prova.':'Trilha liberada pelos pais.'; if(estado.concluido){ b.disabled=true; b.textContent='✅ Resumo concluído'; } a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_elos-do-juramento.json'; a.click(); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>
